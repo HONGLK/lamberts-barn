@@ -1,0 +1,3973 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+assets/
+  css/
+    main.css
+components/
+  AppFooter.vue
+  AppHeader.vue
+  BlogCard.vue
+  FloatingTags.vue
+  IntroSection.vue
+  LanguageSwitcher.vue
+  LatestPost.vue
+  ProjectCard.vue
+  ProjectsSection.vue
+  ScrollIndicator.vue
+  SkillSection.vue
+  TimelineSection.vue
+composables/
+  useScrollManager.js
+layouts/
+  default.vue
+locales/
+  en.json
+  zh-TW.json
+pages/
+  blog/
+    [documentId].vue
+    index.vue
+  about.vue
+  index.vue
+plugins/
+  fontawesome.js
+public/
+  anchor.svg
+  EMQx.svg
+  favicon.svg
+  robots.txt
+server/
+  tsconfig.json
+.eslintrc.cjs
+.gitignore
+app.vue
+nuxt.config.ts
+package.json
+README.md
+tsconfig.json
+
+================================================================
+Files
+================================================================
+
+================
+File: composables/useScrollManager.js
+================
+import { onMounted, onBeforeUnmount } from 'vue';
+
+export function useScrollManager() {
+  // 啟用頁面滾動
+  const enableScrolling = () => {
+    // 重置全局滾動樣式
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.userSelect = '';
+    document.body.classList.remove('has-fullpage');
+    
+    // 清理任何可能影響滾動的其他樣式
+    const allScrollableElements = document.querySelectorAll('.scrollable');
+    allScrollableElements.forEach(el => {
+      el.style.overflow = '';
+    });
+  };
+  
+  // 禁用頁面滾動 (全頁模式用)
+  const disableScrolling = () => {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.classList.add('has-fullpage');
+  };
+  
+  // 在元件掛載時自動啟用滾動
+  onMounted(() => {
+    // 默認啟用滾動，除非特別指定
+  });
+  
+  // 在元件卸載前確保啟用滾動
+  onBeforeUnmount(() => {
+    enableScrolling();
+  });
+  
+  return {
+    enableScrolling,
+    disableScrolling
+  };
+}
+
+================
+File: public/EMQx.svg
+================
+<svg width="28" height="11" viewBox="0 0 28 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.56641 7.69336V9H1.86328V7.69336H5.56641ZM2.31445 0.46875V9H0.744141V0.46875H2.31445ZM5.06836 3.97266V5.24414H1.86328V3.97266H5.06836ZM5.54297 0.46875V1.78125H1.86328V0.46875H5.54297ZM7.19531 0.46875H8.5957L10.4531 6.5625L12.293 0.46875H13.5645L11.0332 9H9.86133L7.19531 0.46875ZM6.65039 0.46875H7.96875L8.17383 6V9H6.65039V0.46875ZM12.9199 0.46875H14.2441V9H12.7207V6L12.9199 0.46875ZM19.6699 7.76953L21.6738 9.58594L20.6777 10.5059L18.7148 8.70117L19.6699 7.76953ZM21.6211 4.05469V5.41406C21.6211 6.02734 21.5488 6.56641 21.4043 7.03125C21.2637 7.49219 21.0586 7.87695 20.7891 8.18555C20.5234 8.49414 20.2051 8.72656 19.834 8.88281C19.4629 9.03906 19.0527 9.11719 18.6035 9.11719C18.1504 9.11719 17.7383 9.03906 17.3672 8.88281C17 8.72656 16.6816 8.49414 16.4121 8.18555C16.1465 7.87695 15.9395 7.49219 15.791 7.03125C15.6426 6.56641 15.5684 6.02734 15.5684 5.41406V4.05469C15.5684 3.44141 15.6406 2.9043 15.7852 2.44336C15.9297 1.98242 16.1367 1.59766 16.4062 1.28906C16.6758 0.976563 16.9941 0.742188 17.3613 0.585938C17.7324 0.429687 18.1426 0.351562 18.5918 0.351562C19.0449 0.351562 19.457 0.429687 19.8281 0.585938C20.1992 0.742188 20.5195 0.976563 20.7891 1.28906C21.0586 1.59766 21.2637 1.98242 21.4043 2.44336C21.5488 2.9043 21.6211 3.44141 21.6211 4.05469ZM20.0566 5.41406V4.04297C20.0566 3.625 20.0254 3.26562 19.9629 2.96484C19.9004 2.66406 19.8066 2.41992 19.6816 2.23242C19.5566 2.04102 19.4023 1.90039 19.2188 1.81055C19.0391 1.7207 18.8301 1.67578 18.5918 1.67578C18.3574 1.67578 18.1484 1.7207 17.9648 1.81055C17.7852 1.90039 17.6328 2.04102 17.5078 2.23242C17.3867 2.41992 17.293 2.66406 17.2266 2.96484C17.1641 3.26562 17.1328 3.625 17.1328 4.04297V5.41406C17.1328 5.83594 17.1641 6.19727 17.2266 6.49805C17.293 6.79883 17.3887 7.04688 17.5137 7.24219C17.6387 7.43359 17.791 7.57422 17.9707 7.66406C18.1543 7.75391 18.3652 7.79883 18.6035 7.79883C18.8379 7.79883 19.0449 7.75391 19.2246 7.66406C19.4082 7.57422 19.5625 7.43359 19.6875 7.24219C19.8125 7.04688 19.9043 6.79883 19.9629 6.49805C20.0254 6.19727 20.0566 5.83594 20.0566 5.41406ZM24.1465 2.66016L24.9961 4.42969L25.7637 2.66016H27.3809L25.7344 5.76562L27.4395 9H25.8164L24.9375 7.16602L24.0938 9H22.459L24.1113 5.7832L22.5176 2.66016H24.1465Z" fill="white"/>
+</svg>
+
+================
+File: components/AppFooter.vue
+================
+<template>
+    <footer class="footer">
+      <div class="container">
+        <p>Lambert76 &copy; {{ currentYear }} All rights reserved.</p>
+      </div>
+    </footer>
+  </template>
+  
+  <script>
+  export default {
+    computed: {
+      currentYear() {
+        return new Date().getFullYear();
+      }
+    }
+  }
+  </script>
+  
+  <style scoped>
+  .footer {
+    /* background-color: #f8f9fa; */
+    padding: 0;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 100vw;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  </style>
+
+================
+File: components/BlogCard.vue
+================
+<template>
+  <NuxtLink :to="localePath(`/blog/${article.documentId}`)" class="blog-card">
+    <div class="card-image-container">
+      <img 
+        v-if="featuredImage" 
+        :src="featuredImage" 
+        :alt="article.Title" 
+        class="card-image"
+      >
+      <div v-else class="placeholder-image">
+        <span class="material-symbols-outlined">image</span>
+      </div>
+      <div v-if="category" class="category-badge">
+        #{{ category }}
+      </div>
+    </div>
+    
+    <div class="card-content">
+      <h3 class="card-title">{{ article.Title }}</h3>
+      
+      <p class="card-description">{{ article.Description || '' }}</p>
+      
+      <div class="card-meta">
+        <div class="meta-date">
+          <font-awesome-icon :icon="['fas', 'calendar']" />
+          <span>{{ formatDate(article.PublishedDate) }}</span>
+        </div>
+        
+        <div class="read-more">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </div>
+      </div>
+    </div>
+  </NuxtLink>
+</template>
+
+<script setup>
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+const props = defineProps({
+  article: {
+    type: Object,
+    required: true
+  }
+})
+
+// 取得文章封面圖片
+const featuredImage = computed(() => {
+  if (props.article.Image) {
+    const baseUrl = useRuntimeConfig().public.strapi.url || 'http://localhost:1337'
+    return `${baseUrl}${props.article.Image.url}`
+  }
+  return null
+})
+
+// 取得文章分類
+const category = computed(() => {
+  if (props.article.category) {
+    return props.article.category.Name
+  }
+  return null
+})
+  
+// 格式化日期
+const formatDate = (dateString) => {
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat(useI18n().locale.value, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date)
+}
+</script>
+
+<style scoped>
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: var(--surface-color);
+  height: 100%;
+  text-decoration: none;
+  color: var(--on-surface-color);
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.blog-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.placeholder-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--disabled-color);
+}
+
+.placeholder-image .material-symbols-outlined {
+  font-size: 3rem;
+}
+
+.category-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: rgba(80, 80, 80, 0.7);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+.card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.card-description {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--divider-color);
+  padding-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.meta-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.read-more {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  transition: transform 0.2s ease;
+}
+
+.read-more .material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+.blog-card:hover .read-more {
+  transform: translateX(3px);
+}
+
+/* RWD 設計 */
+@media (max-width: 768px) {
+  .card-image-container {
+    height: 180px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image-container {
+    height: 160px;
+  }
+  
+  .card-content {
+    padding: 1rem;
+  }
+  
+  .card-meta {
+    font-size: 0.8rem;
+  }
+}
+</style>
+
+================
+File: components/FloatingTags.vue
+================
+<template>
+    <div class="floating-tags">
+      <span 
+        class="tag" 
+        v-for="(tag, index) in tags" 
+        :key="index" 
+        :style="tagStyles[index]"
+        :class="{ 'lambert-tag': tag === 'Lambert' }"
+      >
+        #{{ tag }}
+      </span>
+    </div>
+</template>
+  
+<script setup>
+  import { ref, computed, onMounted } from 'vue'
+  
+  const props = defineProps({
+    tags: {
+      type: Array,
+      required: true
+    }
+  })
+  
+  const gridSize = computed(() => Math.ceil(Math.sqrt(props.tags.length)))
+  
+  const tagStyles = ref([])
+  
+  const getTagStyle = (index) => {
+    const row = Math.floor(index / gridSize.value)
+    const col = index % gridSize.value
+    const cellWidth = 100 / gridSize.value
+    const cellHeight = 100 / gridSize.value
+  
+    return {
+      fontSize: `${Math.random() * (1.5 - 1) + 1}em`,
+      top: `${row * cellHeight / 1.2 + Math.random() * cellHeight / 1.2 + 10}%`,
+      left: `${col * cellWidth/1.2 + Math.random() * cellWidth/1.5}%`,
+      opacity: Math.random() * (1 - 0.5) + 0.5,
+      animationDuration: `${Math.random() * 3 + 2}s`,
+      animationDelay: `${Math.random() * 1}s`
+    }
+  }
+  
+  onMounted(() => {
+    tagStyles.value = props.tags.map((_, index) => getTagStyle(index))
+  })
+</script>
+  
+<style scoped>
+  .floating-tags {
+    flex: 1;
+    position: relative;
+    height: 100vh;
+    width: 50%;
+  }
+  
+  .tag {
+    position: absolute;
+    color: var(--secondary-color);
+    font-weight: bold;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    animation-name: float;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(5px, 5px);
+    }
+  }
+  
+  .lambert-tag {
+    color: var(--primary-color);
+    font-weight: bold;
+    opacity: 1;
+  }
+  
+  .tag:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  </style>
+
+================
+File: components/LanguageSwitcher.vue
+================
+<template>
+  <div class="language-switcher">
+    <button
+      class="lang-btn"
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        @click="switchLanguage(locale.code)"
+        :class="{ 'active': currentLocale === locale.code }"
+      >
+      {{ locale.name }}
+    </button>
+  </div>
+</template>
+
+<script setup>
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+const router = useRouter()
+
+const currentLocale = computed(() => locale.value)
+const availableLocales = computed(() => locales.value)
+
+const switchLanguage = (localeCode) => {
+  if (localeCode === currentLocale.value) return
+  const path = switchLocalePath(localeCode)
+  router.push(path)
+}
+</script>
+  
+<style scoped>
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lang-btn {
+    background-color: var(--surface-color);
+    color: var(--on-surface-color);
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+}
+
+.lang-btn.active {
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+}
+</style>
+
+================
+File: components/LatestPost.vue
+================
+<template>
+    <section class="latest-posts">
+      <div class="section-header">
+        <h2 class="section-title">{{ $t('latest_posts') }}</h2>
+        <NuxtLink :to="localePath('/blog')" class="view-all">
+          {{ $t('all_posts') }}
+          <font-awesome-icon :icon="['fas', 'arrow-right']" />
+        </NuxtLink>
+      </div>
+      
+      <div v-if="loading" class="loading-spinner">
+        <font-awesome-icon :icon="['fas', 'spinner']" spin />
+      </div>
+      
+      <div v-else-if="error" class="error-message">
+        <p>{{ error }}</p>
+      </div>
+      
+      <div v-else-if="latestPosts.length === 0" class="no-posts">
+        <p>暫無文章</p>
+      </div>
+      
+      <div v-else class="posts-grid">
+        <BlogCard 
+          v-for="post in latestPosts" 
+          :key="post.id" 
+          :article="post" 
+        />
+      </div>
+    </section>
+  </template>
+  
+  <script setup>
+  import { ref, onMounted } from 'vue'
+  
+  const { t } = useI18n()
+  const localePath = useLocalePath()
+  
+  const latestPosts = ref([])
+  const loading = ref(true)
+  const error = ref(null)
+  
+  const fetchLatestPosts = async () => {
+    try {
+      loading.value = true
+      const { data } = await useStrapiClient().find('articles', {
+        populate: ['image', 'category'],
+        sort: ['publishedAt:desc'],
+        pagination: {
+          page: 1,
+          pageSize: 3
+        }
+      })
+      latestPosts.value = data
+      loading.value = false
+    } catch (err) {
+      error.value = '無法載入最新文章'
+      loading.value = false
+      console.error('Error fetching latest posts:', err)
+    }
+  }
+  
+  onMounted(() => {
+    fetchLatestPosts()
+  })
+  </script>
+  
+  <style scoped>
+  .latest-posts {
+    margin: 4rem 0;
+    padding: 0 1rem;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    color: var(--primary-color);
+    margin: 0;
+  }
+  
+  .view-all {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .view-all:hover {
+    color: var(--primary-color);
+    gap: 0.8rem;
+  }
+  
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .error-message, .no-posts {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  </style>
+
+================
+File: components/ScrollIndicator.vue
+================
+<template>
+  <div class="scroll-indicator">
+    <span class="material-symbols-outlined animate-bounce">expand_more</span>
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+</style>
+
+================
+File: components/SkillSection.vue
+================
+<template>
+  <section class="fullpage-section skills">
+    <div class="content">
+      <h2>專長領域</h2>
+        <ul>
+          <li v-for="(skill, index) in skills" :key="index">
+          <span class="material-symbols-outlined">{{ skill.icon }}</span> {{ skill.name }}
+        </li>
+      </ul>
+    </div>
+  </section>
+</template>
+  
+<script setup>
+  defineProps({
+    skills: {
+      type: Array,
+      required: true
+    }
+  })
+</script>
+  
+<style scoped>
+.skills {
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+}
+  
+h2 {
+  color: var(--primary-color);
+}
+  
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.material-symbols-outlined {
+  margin-right: 10px;
+  color: var(--secondary-color);
+}
+</style>
+
+================
+File: components/TimelineSection.vue
+================
+<template>
+  <section class="fullpage-section timeline scrollable">
+    <div class="content">
+      <h2>我的歷程</h2>
+      <div class="timeline-container">
+        <div v-for="(event, index) in timelineEvents" :key="index" class="timeline-item" :class="{ 'right': index % 2 !== 0 }">
+          <div class="timeline-content">
+            <h3>{{ event.year }}</h3>
+            <h4>{{ event.title }}</h4>
+            <p>{{ event.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+  
+<script setup>
+  import { ref } from 'vue'
+  
+  const timelineEvents = ref([
+    {
+      year: '2020',
+      title: '全端工程師',
+      description: '加入某科技公司，負責開發和維護企業級應用。'
+    },
+    {
+      year: '2018',
+      title: 'IoT 專案負責人',
+      description: '領導一個創新的物聯網項目，整合 AI 技術。'
+    },
+    {
+      year: '2016',
+      title: '軟體工程師',
+      description: '開始專業軟體開發生涯，主要專注於後端開發。'
+    },
+    {
+      year: '2014',
+      title: '大學畢業',
+      description: '獲得資訊工程學士學位，開始了解 AI 和 IoT 技術。'
+    }
+  ])
+
+  const props = defineProps({
+    isLastSection: {
+      type: Boolean,
+      default: false
+    }
+  })
+</script>
+  
+<style scoped>
+.timeline {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--on-background-color);
+}
+
+.content {
+  flex: 1;
+  /* overflow-y: auto; */
+  width: 100vw;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.timeline-container {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: var(--primary-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: var(--surface-color);
+  border: 4px solid var(--primary-color);
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.right {
+  left: 50%;
+}
+
+.right::after {
+  left: -16px;
+}
+
+.timeline-content {
+  padding: 20px 30px;
+  background-color: var(--surface-color);
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+h4 {
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline-container::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  .timeline-item::after {
+    left: 15px;
+  }
+  
+  .right {
+    left: 0%;
+  }
+}
+</style>
+
+================
+File: locales/en.json
+================
+{
+    "welcome": "Hello!\n\nWelcome to my personal website",
+    "intro_description": "I'm Lambert, a full-stack engineer passionate about IoT technology and artificial intelligence, integrating them into life.\nLike my personal logo combining blue and orange, blue represents technology, orange represents passion.\nLambert's Barn has accumulated sweat, laughter, and challenges along the way, shaping who I am today.",
+    "projects": "Projects",
+    "skills": "Expertise",
+    "timeline": "My Journey",
+    "blog": "Blog",
+    "read_more": "Read More",
+    "latest_posts": "Latest Posts",
+    "all_posts": "All Posts",
+    "search": "Search",
+    "categories": "Categories",
+    "tags": "Tags",
+    "published_at": "Published",
+    "updated_at": "Updated",
+    "language": "Language",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "copyright": "All rights reserved",
+    "project": {
+      "items": [
+        {
+          "id": "barn",
+          "title": "Lambert's Barn",
+          "year": "1996 ~ 至今",
+          "description": "這是我的個人穀倉\n\n紀錄了我的歷程\n\n只要活著就會更新下去！",
+          "fullDescription": "更多詳細內容...",
+          "img": "/logo.png",
+          "technologies": ["Bun", "Nuxt", "Docker"]
+        },
+        {
+          "id": "monitoring",
+          "title": "動態結構監測平台",
+          "year": "2021",
+          "description": "AIoT + 數據分析 + 資料視覺化\n\n即時建築物結構監測數據、報告及連線監控\n\n",
+          "fullDescription": "這是專案的詳細描述...",
+          "img": "/shmbanner.png",
+          "technologies": ["JavaScript", "Python", "Flask", "MQTT", "Docker"]
+        },
+        {
+          "title": "雲端預警交集平台",
+          "year": "2023",
+          "description": "即時雲端運算 + 現地型地震預警\n\n靈活的群組架構搭配交集系統運算\n\n提供海外即時地震預警",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/eewsbanner.png",
+          "technologies": ["JavaScript", "Golang", "Django", "MQTT", "Docker"]
+        },
+        {
+          "title": "靜態結構監測平台",
+          "year": "2024",
+          "description": "這是專案 2 的簡短描述。",
+          "fullDescription": "這是專案 2 的詳細描述，包含更多信息。",
+          "img": "/sshmbanner.png",
+          "technologies": ["React", "Express", "PostgreSQL"]
+        },
+        {
+          "title": "系統通知中心",
+          "description": "這是專案 1 的簡短描述。",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/logo.png",
+          "technologies": ["Vue", "Node.js", "MongoDB"]
+        }
+      ]
+    }
+  }
+
+================
+File: locales/zh-TW.json
+================
+{
+    "welcome": "您好！\n\n歡迎來到我的個人網站",
+    "intro_description": "我是 Lambert，一名對IoT技術、人工智慧熱忱且將其融入生活的工程師\n誠如我的個人Logo，結合藍色與橘色，藍色代表科技，橘色代表熱忱。\nLambert's Barn 一點一點累積了這一路上的汗水、歡笑與坑洞，成為現在的我。",
+    "projects": "專 案",
+    "skills": "專長領域",
+    "timeline": "我的歷程",
+    "blog": "網 誌",
+    "read_more": "閱讀更多",
+    "latest_posts": "最新文章",
+    "all_posts": "所有文章",
+    "search": "搜尋",
+    "categories": "分類",
+    "tags": "標籤",
+    "published_at": "發布於",
+    "updated_at": "更新於",
+    "language": "語言",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "home": "首頁",
+    "about": "關於我",
+    "contact": "聯絡我",
+    "copyright": "版權所有",
+    "project": {
+      "items": [
+        {
+          "id": "barn",
+          "title": "Lambert's Barn",
+          "year": "1996 ~ 至今",
+          "description": "這是我的個人穀倉\n\n紀錄了我的歷程\n\n只要活著就會更新下去！",
+          "fullDescription": "更多詳細內容...",
+          "img": "/logo.png",
+          "technologies": ["Lambert", "Bun", "Nuxt", "Docker"]
+        },
+        {
+          "title": "高階地震預警系統 - 客戶端",
+          "year": "2021~",
+          "description": "針對台灣半導體大廠\n\nT廠、M廠、U廠、W廠\n\n安全、快速、準確的地震預警系統",
+          "fullDescription": "",
+          "img": "/logo.png",
+          "technologies": ["Lambert"]
+        },
+        {
+          "id": "monitoring",
+          "title": "動態結構監測平台",
+          "year": "2021",
+          "description": "AIoT + 數據分析 + 資料視覺化\n\n即時建築物結構監測數據、報告及連線監控\n\n",
+          "fullDescription": "這是專案的詳細描述...",
+          "img": "/shmbanner.png",
+          "technologies": ["JavaScript", "Python", "Flask", "MQTT", "Docker"]
+        },
+        {
+          "title": "雲端預警交集平台",
+          "year": "2023",
+          "description": "即時雲端運算 + 現地型地震預警\n\n靈活的群組架構搭配交集系統運算\n\n提供海外即時地震預警及遠端設備管理",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/eewsbanner.png",
+          "technologies": ["JavaScript", "Golang", "Python", "Django", "MQTT", "Docker"]
+        },
+        {
+          "title": "靜態結構監測平台",
+          "year": "2024",
+          "description": "替設廠於台灣之\"Ａ\"廠建置\n\n提供門檻通知、每週結構報告、即時數據分析及匯出、感測器Dashboard",
+          "fullDescription": "這是專案 2 的詳細描述，包含更多信息。",
+          "img": "/sshmbanner.png",
+          "technologies": ["Bun", "Nuxt", "MQTT", "Docker" ]
+        },
+        {
+          "title": "系統通知中心",
+          "year": "2024",
+          "description": "提供公司技術人員快速的API通知對接點、通知對象管理及追蹤式紀錄。\n\n通知管道包含：SMS、Line、Email",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/logo.png",
+          "technologies": ["Nuxt", "FastAPI", "Line", "SMS", "Email"]
+        },
+        {
+          "title": "哨兵應用程式",
+          "year": "2025",
+          "description": "跨平台手機App，提供客戶最即時的整合訊息\n\n中央氣象署地震資訊、P-Waver結構監測、地震預警 一手掌握",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/p_sentry.png",
+          "technologies": ["Figma", "Flutter"]
+        }
+      ]
+    }
+  }
+
+================
+File: pages/blog/[documentId].vue
+================
+<template>
+  <div class="article-container">
+    <div v-if="loading" class="loading-spinner">
+      <font-awesome-icon :icon="['fas', 'spinner']" spin />
+    </div>
+
+    <div v-else-if="error" class="error-message">
+      <p>{{ error }}</p>
+      <NuxtLink :to="localePath('/blog')" class="back-link">
+        <font-awesome-icon :icon="['fas', 'arrow-left']" />
+        返回文章列表
+      </NuxtLink>
+    </div>
+
+    <template v-else-if="article">
+      <div class="article-header">
+        <div v-if="article.category" class="article-category">
+          {{ article.category.Name }}
+        </div>
+        <h1 class="article-title">{{ article.Title }}</h1>
+        <div class="article-meta">
+          <div class="meta-item">
+            <font-awesome-icon :icon="['fas', 'calendar']" />
+            <span>{{ formatDate(article.PublishedDate) }}</span>
+          </div>
+          <div v-if="article.author" class="meta-item">
+            <font-awesome-icon :icon="['fas', 'user']" />
+            <span>{{ article.author.Name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 渲染 Markdown 內容 -->
+      <div class="article-content" v-html="renderedMarkdown"></div>
+
+      <div class="article-footer">
+        <NuxtLink :to="localePath('/blog')" class="back-link">
+          <font-awesome-icon :icon="['fas', 'arrow-left']" />
+          返回文章列表
+        </NuxtLink>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRoute, useRuntimeConfig } from "#app";
+import { useLocalePath } from "#imports";
+import MarkdownIt from "markdown-it";
+import MarkdownItAnchor from "markdown-it-anchor";
+import MarkdownItReplaceLink from "markdown-it-replace-link";
+import hljs from "highlight.js";
+import sanitizeHtml from "sanitize-html";
+import "highlight.js/styles/github-dark.css";
+
+const route = useRoute();
+const localePath = useLocalePath();
+const loading = ref(true);
+const error = ref(null);
+const article = ref(null);
+const renderedMarkdown = ref("");
+
+const articleId = route.params.documentId;
+const strapiUrl = useRuntimeConfig().public.strapi.url;
+
+// 初始化 markdown-it，確保 Markdown 渲染正確
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return `<pre class="hljs language-${lang}"><code class="language-${lang}">${
+          hljs.highlight(str, { language: lang }).value
+        }</code></pre>`;
+      } catch (err) {
+        console.error("Highlight error:", err);
+      }
+    }
+    return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
+  }
+})
+.use(MarkdownItAnchor, {
+  permalink: MarkdownItAnchor.permalink.linkInsideHeader({
+    symbol: `<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0545407 15.017C-0.226368 16.3169 0.605513 17.5997 1.9126 17.8821C1.93375 17.8867 1.95489 17.891 1.97602 17.895C2.08941 17.9299 2.20705 17.9483 2.32767 17.9483H11.4611C12.3859 17.9483 13.1356 16.8667 13.1356 15.5324C13.1356 14.1981 12.3859 13.1164 11.4611 13.1164H5.41965L7.56226 3.20134C7.84317 1.90142 7.01129 0.618646 5.7042 0.33619C4.39712 0.0537336 3.10979 0.878556 2.82888 2.17848L0.0545407 15.017ZM4.06845 13.1164L6.27134 2.92238C6.39903 2.33151 6.0209 1.74843 5.42677 1.62004C4.83264 1.49165 4.24749 1.86657 4.11981 2.45744L1.78882 13.2443C1.95792 13.1614 2.13916 13.1164 2.32767 13.1164H2.49204L4.76527 2.59692C4.81634 2.36057 5.0504 2.21061 5.28805 2.26196C5.5257 2.31332 5.67695 2.54655 5.62588 2.7829L3.39284 13.1164H4.06845ZM3.10808 14.4342H3.78368L3.64129 15.0931H2.96569L3.10808 14.4342ZM2.20417 14.4486C1.84255 14.5337 1.56655 14.9866 1.56655 15.5324C1.56655 16.0062 1.77455 16.41 2.066 16.5639C2.10617 16.5776 2.14755 16.5891 2.19003 16.5983C2.70994 16.7106 3.22297 16.4376 3.4286 15.9716H2.32767C2.24019 15.9716 2.16133 15.9184 2.10579 15.8332C2.0067 15.7315 1.9588 15.584 1.99092 15.4354L2.20417 14.4486ZM4.57685 16.6305C4.67074 16.4478 4.74249 16.25 4.78792 16.0398L4.80265 15.9716H11.4611C11.6293 15.9716 11.7656 15.775 11.7656 15.5324C11.7656 15.2898 11.6293 15.0931 11.4611 15.0931H4.9925L5.13488 14.4342H11.4611C11.8815 14.4342 12.2222 14.9259 12.2222 15.5324C12.2222 16.1389 11.8815 16.6305 11.4611 16.6305H4.57685Z" fill="currentColor"/>
+</svg>
+`,
+    class: 'header-anchor',
+    renderAttrs: (slug) => ({ 'aria-label': `連結到 "${slug}"` })
+  })
+})
+.use(MarkdownItReplaceLink, {
+  replaceLink: function(link) {
+    // 處理圖片路徑
+    if (link && !link.startsWith('http') && !link.startsWith('https') && !link.startsWith('/')) {
+      return `${strapiUrl}/${link}`;
+    } else if (link && link.startsWith('/')) {
+      return `${strapiUrl}${link}`;
+    }
+    return link;
+  }
+});
+
+// 安全配置，允許圖片和表格等標籤
+const sanitizeOptions = {
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+    'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'code', 
+    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'br', 'hr', 
+    'em', 'strong', 'del', 's', 'svg', 'path'
+  ]),
+  allowedAttributes: {
+    ...sanitizeHtml.defaults.allowedAttributes,
+    img: ['src', 'alt', 'title', 'width', 'height', 'loading'],
+    code: ['class', 'spellcheck'],
+    pre: ['class'],
+    a: ['href', 'name', 'target', 'rel', 'aria-label', 'class'],
+    svg: ['width', 'height', 'viewBox', 'fill', 'xmlns'],
+    path: ['d', 'fill', 'fill-rule', 'clip-rule'],
+    '*': ['class']
+  }
+};
+
+// 從 Strapi 抓取文章
+const fetchArticle = async () => {
+  try {
+    loading.value = true;
+    
+    const response = await fetch(`${strapiUrl}/api/articles/${articleId}?populate=*`);
+    const result = await response.json();
+
+    if (!result.data) {
+      throw new Error("文章不存在或無法載入");
+    }
+
+    article.value = result.data;
+
+    // 渲染 Markdown 內容
+    renderedMarkdown.value = sanitizeHtml(
+      md.render(article.value.Content),
+      sanitizeOptions
+    );
+
+    loading.value = false;
+    
+    // 設置頁面標題
+    useHead({
+      title: article.value.Title,
+      meta: [{ name: "description", content: article.value.Description }],
+    });
+  } catch (err) {
+    error.value = "無法載入文章，請稍後再試";
+    loading.value = false;
+    console.error("Error fetching article:", err);
+  }
+};
+
+// 格式化日期
+const formatDate = (dateString) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("zh-TW", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
+
+onMounted(() => {
+  fetchArticle();
+});
+</script>
+
+<style>
+/* 不使用 scoped，確保樣式應用到動態渲染的內容 */
+.article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+  background-color: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #333333);
+}
+
+.article-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color, #2c3e50);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--text-secondary, #666666);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.article-category {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.article-category span {
+  background-color: var(--primary-color, #2c3e50);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Medium 風格內文 */
+.article-content {
+  line-height: 1.8;
+  color: var(--text-primary, #333333);
+  font-size: 1.1rem;
+  padding-bottom: 2rem;
+}
+
+/* 標題樣式 */
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  color: var(--primary-color, #2c3e50);
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 25px;
+}
+
+.article-content h1 {
+  font-size: 2.2rem;
+  text-align: center;
+  padding-left: 0; /* 中心對齊的標題不需要左邊距 */
+}
+
+.article-content h1 .header-anchor {
+  /* 針對置中的 h1，錨點放在左側 */
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.article-content h2 {
+  font-size: 1.75rem;
+  border-bottom: 2px solid var(--divider-color, #eaecef);
+  padding-bottom: 0.5rem;
+}
+
+.article-content h3 {
+  font-size: 1.5rem;
+}
+
+/* 段落樣式 */
+.article-content p {
+  margin-bottom: 1.2rem;
+}
+
+/* 引用區塊 */
+.article-content blockquote {
+  font-style: italic;
+  border-left: 4px solid var(--divider-color, #eaecef);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* 程式碼區塊 */
+.article-content pre {
+  background-color: var(--surface-color, #1e1e1e) !important;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin: 1.5rem 0;
+}
+
+.article-content pre code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  padding: 0 !important;
+  color: var(--code-text, #eeeeee) !important;
+  background-color: transparent !important;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* 內聯程式碼 */
+.article-content code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--accent, #e96900);
+  font-size: 0.9em;
+}
+
+/* 表格樣式 */
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid var(--divider-color, #eaecef);
+  overflow-x: auto;
+  display: block;
+}
+
+.article-content table th,
+.article-content table td {
+  border: 1px solid var(--divider-color, #eaecef);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.article-content table th {
+  background-color: var(--surface-color, #f8f8f8);
+  font-weight: bold;
+}
+
+.article-content table tr:nth-child(2n) {
+  background-color: var(--table-alt-row, #f8f8f8);
+}
+
+/* 圖片樣式 */
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 超連結樣式 */
+.article-content a {
+  color: var(--accent, #3498db);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.article-content a:hover {
+  color: var(--secondary-color, #2980b9);
+  text-decoration: none;
+}
+
+/* 列表樣式 */
+.article-content ul,
+.article-content ol {
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* 分隔線 */
+.article-content hr {
+  border: none;
+  border-top: 1px solid var(--divider-color, #eaecef);
+  margin: 2rem 0;
+}
+
+/* 頁尾樣式 */
+.article-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider-color, #eaecef);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color, #2c3e50);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--accent, #3498db);
+}
+
+/* 載入動畫 */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  font-size: 2rem;
+  color: var(--primary-color, #2c3e50);
+}
+
+/* 錯誤訊息 */
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  color: #e74c3c;
+}
+
+/* 錨點樣式 */
+.header-anchor {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary, #757575);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.article-content h2:hover .header-anchor,
+.article-content h3:hover .header-anchor,
+.article-content h4:hover .header-anchor,
+.article-content h5:hover .header-anchor,
+.article-content h6:hover .header-anchor {
+  opacity: 0.7;
+}
+
+.article-content h1:hover .header-anchor {
+  opacity: 0.7;
+}
+
+.header-anchor:hover {
+  opacity: 1 !important;
+  color: var(--accent, #3498db);
+}
+
+/* 確保 SVG 圖標垂直居中 */
+.header-anchor svg {
+  vertical-align: middle;
+  display: block;
+}
+
+/* 適應深色模式 */
+@media (prefers-color-scheme: dark) {
+  .article-content code {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-dark, #ff7e35);
+  }
+  
+  .article-content table th {
+    background-color: var(--surface-color-dark, #2d2d2d);
+  }
+  
+  .article-content table tr:nth-child(2n) {
+    background-color: var(--table-alt-row-dark, #2d2d2d);
+  }
+  
+  .header-anchor {
+    color: var(--text-secondary-dark, #9e9e9e);
+  }
+  
+  .header-anchor:hover {
+    color: var(--accent-dark, #64b5f6);
+  }
+}
+</style>
+
+================
+File: pages/blog/index.vue
+================
+<template>
+  <div class="blog-container">
+    <h1 class="page-title">{{ $t('blog') }}</h1>
+    
+    <div class="blog-filters">
+      <div class="search-box">
+        <font-awesome-icon :icon="['fas', 'search']" class="search-icon" />
+        <input 
+          type="text" 
+          v-model="searchQuery" 
+          :placeholder="$t('search')" 
+          class="search-input"
+        />
+      </div>
+      
+      <div v-if="categories.length" class="category-filter">
+        <label>{{ $t('categories') }}:</label>
+        <select v-model="selectedCategory" class="category-select">
+          <option value="">{{ $t('all_posts') }}</option>
+          <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.Name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <div v-if="loading" class="loading-spinner">
+      <font-awesome-icon :icon="['fas', 'spinner']" spin />
+    </div>
+    
+    <div v-else-if="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
+    
+    <div v-else-if="filteredArticles.length === 0" class="no-posts">
+      <p>暫無文章</p>
+    </div>
+    
+    <div v-else class="blog-list">
+      <BlogCard 
+        v-for="article in filteredArticles" 
+        :key="article.documentId" 
+        :article="article" 
+      />
+    </div>
+    
+    <div v-if="filteredArticles.length > postsPerPage" class="pagination">
+      <button 
+        v-for="page in totalPages" 
+        :key="page" 
+        @click="currentPage = page" 
+        :class="{ active: currentPage === page }"
+        class="page-button"
+      >
+        {{ page }}
+      </button>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+
+useHead({
+  title: 'Blog'
+});
+
+// 狀態
+const articles = ref([]);
+const categories = ref([]);
+const loading = ref(true);
+const error = ref(null);
+const searchQuery = ref('');
+const selectedCategory = ref('');
+const currentPage = ref(1);
+const postsPerPage = 6;
+
+const config = useRuntimeConfig();
+const API_BASE_URL = config.public.strapi.url || 'http://localhost:1337';
+
+// 從 Strapi 抓取文章
+const fetchArticles = async () => {
+  try {
+    loading.value = true;
+    const response = await fetch(`${API_BASE_URL}/api/articles?populate=*`);
+    const { data } = await response.json();
+    
+    // 直接使用 API 回應格式
+    articles.value = data;
+    
+    loading.value = false;
+  } catch (err) {
+    error.value = '無法載入文章，請稍後再試';
+    loading.value = false;
+    console.error('Error fetching articles:', err);
+  }
+};
+
+const fetchCategories = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/categories`);
+    const { data } = await response.json();
+    
+    // 直接使用 API 回應格式
+    categories.value = data;
+  } catch (err) {
+    console.error('Error fetching categories:', err);
+  }
+};
+
+// 篩選文章
+const filteredArticles = computed(() => {
+  console.log(filteredArticles)
+  let result = articles.value;
+
+  // 搜尋篩選
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase();
+    result = result.filter(article =>
+      article.Title.toLowerCase().includes(query) || 
+      (article.Description && article.Description.toLowerCase().includes(query))
+    );
+  }
+
+  // 分類篩選
+  if (selectedCategory.value) {
+    result = result.filter(article => 
+      article.category && 
+      article.category.id === parseInt(selectedCategory.value)
+    );
+  }
+
+  // 分頁
+  const startIndex = (currentPage.value - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  return result.slice(startIndex, endIndex);
+});
+
+// 計算總頁數
+const totalPages = computed(() => {
+  const filtered = articles.value.filter(article => {
+    // 搜尋篩選
+    if (searchQuery.value) {
+      const query = searchQuery.value.toLowerCase();
+      if (!article.attributes.title.toLowerCase().includes(query) && 
+          !article.attributes.description.toLowerCase().includes(query)) {
+        return false;
+      }
+    }
+    
+    // 分類篩選
+    if (selectedCategory.value) {
+      if (!article.attributes.category || 
+          !article.attributes.category.data || 
+          article.attributes.category.data.id !== parseInt(selectedCategory.value)) {
+        return false;
+      }
+    }
+    
+    return true;
+  });
+  
+  return Math.ceil(filtered.length / postsPerPage);
+});
+
+// 重置分頁當篩選條件改變
+watch([searchQuery, selectedCategory], () => {
+  currentPage.value = 1;
+});
+
+onMounted(() => {
+  fetchArticles();
+  fetchCategories();
+});
+</script>
+
+<style scoped>
+.blog-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.blog-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--divider-color);
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+}
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-select {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--divider-color);
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+.error-message, .no-posts {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.page-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-button:hover {
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+}
+
+.page-button.active {
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+}
+
+@media (max-width: 768px) {
+  .blog-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .category-filter {
+    width: 100%;
+  }
+  
+  .category-select {
+    flex: 1;
+  }
+}
+</style>
+
+================
+File: pages/about.vue
+================
+<template>
+    <div>
+
+    </div>
+</template>
+
+================
+File: public/anchor.svg
+================
+<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0545407 15.017C-0.226368 16.3169 0.605513 17.5997 1.9126 17.8821C1.93375 17.8867 1.95489 17.891 1.97602 17.895C2.08941 17.9299 2.20705 17.9483 2.32767 17.9483H11.4611C12.3859 17.9483 13.1356 16.8667 13.1356 15.5324C13.1356 14.1981 12.3859 13.1164 11.4611 13.1164H5.41965L7.56226 3.20134C7.84317 1.90142 7.01129 0.618646 5.7042 0.33619C4.39712 0.0537336 3.10979 0.878556 2.82888 2.17848L0.0545407 15.017ZM4.06845 13.1164L6.27134 2.92238C6.39903 2.33151 6.0209 1.74843 5.42677 1.62004C4.83264 1.49165 4.24749 1.86657 4.11981 2.45744L1.78882 13.2443C1.95792 13.1614 2.13916 13.1164 2.32767 13.1164H2.49204L4.76527 2.59692C4.81634 2.36057 5.0504 2.21061 5.28805 2.26196C5.5257 2.31332 5.67695 2.54655 5.62588 2.7829L3.39284 13.1164H4.06845ZM3.10808 14.4342H3.78368L3.64129 15.0931H2.96569L3.10808 14.4342ZM2.20417 14.4486C1.84255 14.5337 1.56655 14.9866 1.56655 15.5324C1.56655 16.0062 1.77455 16.41 2.066 16.5639C2.10617 16.5776 2.14755 16.5891 2.19003 16.5983C2.70994 16.7106 3.22297 16.4376 3.4286 15.9716H2.32767C2.24019 15.9716 2.16133 15.9184 2.10579 15.8332C2.0067 15.7315 1.9588 15.584 1.99092 15.4354L2.20417 14.4486ZM4.57685 16.6305C4.67074 16.4478 4.74249 16.25 4.78792 16.0398L4.80265 15.9716H11.4611C11.6293 15.9716 11.7656 15.775 11.7656 15.5324C11.7656 15.2898 11.6293 15.0931 11.4611 15.0931H4.9925L5.13488 14.4342H11.4611C11.8815 14.4342 12.2222 14.9259 12.2222 15.5324C12.2222 16.1389 11.8815 16.6305 11.4611 16.6305H4.57685Z" fill="url(#paint0_linear_114_137)"/>
+<defs>
+<linearGradient id="paint0_linear_114_137" x1="0.0492369" y1="0.231426" x2="13.0873" y2="17.9838" gradientUnits="userSpaceOnUse">
+<stop offset="0.244792" stop-color="#3C44FA"/>
+<stop offset="0.854167" stop-color="#F05600"/>
+</linearGradient>
+</defs>
+</svg>
+
+================
+File: public/favicon.svg
+================
+<svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0980787 27.0095C-0.407069 29.3471 1.08887 31.6539 3.43936 32.1618C3.47754 32.1701 3.5157 32.1778 3.55385 32.185C3.75763 32.2478 3.96905 32.2808 4.18583 32.2808H20.6102C22.2732 32.2808 23.6213 30.3357 23.6213 27.9363C23.6213 25.5369 22.2732 23.5918 20.6102 23.5918H9.74598L13.599 5.76187C14.1041 3.42426 12.6082 1.11749 10.2577 0.609562C7.90719 0.101631 5.59223 1.58488 5.08709 3.92249L0.0980787 27.0095ZM7.31616 23.5918L11.2775 5.26022C11.5072 4.19767 10.8272 3.14914 9.75877 2.91826C8.69037 2.68738 7.63812 3.36159 7.40851 4.42414L3.21678 23.8217C3.52087 23.6726 3.8468 23.5918 4.18583 23.5918H4.48136L8.56922 4.67496C8.66106 4.24994 9.08196 3.98026 9.50932 4.07261C9.93668 4.16496 10.2087 4.58437 10.1168 5.00939L6.10125 23.5918H7.31616ZM5.58916 25.9615H6.80407L6.54802 27.1464H5.33311L5.58916 25.9615ZM3.96368 25.9874C3.31342 26.1405 2.81713 26.9548 2.81713 27.9363C2.81713 28.7886 3.1913 29.5147 3.71556 29.7914C3.78769 29.816 3.86199 29.8366 3.93826 29.8531C4.87321 30.0551 5.79578 29.5641 6.16555 28.7262H4.18582C4.0286 28.7262 3.88687 28.6306 3.78702 28.4775C3.60866 28.2946 3.52242 28.0294 3.58021 27.762L3.96368 25.9874ZM8.23041 29.9111C8.39925 29.5826 8.52826 29.2269 8.60995 28.8489L8.63645 28.7262H20.6102C20.9126 28.7262 21.1577 28.3726 21.1577 27.9363C21.1577 27.5001 20.9126 27.1464 20.6102 27.1464H8.97785L9.23389 25.9615H20.6102C21.3661 25.9615 21.9789 26.8457 21.9789 27.9363C21.9789 29.027 21.3661 29.9111 20.6102 29.9111H8.23041Z" fill="url(#paint0_linear_107_111)"/>
+<defs>
+<linearGradient id="paint0_linear_107_111" x1="0.0885412" y1="0.421169" x2="23.5344" y2="32.3447" gradientUnits="userSpaceOnUse">
+<stop offset="0.244792" stop-color="#3C44FA"/>
+<stop offset="0.854167" stop-color="#F05600"/>
+</linearGradient>
+</defs>
+</svg>
+
+================
+File: public/robots.txt
+================
+
+
+================
+File: server/tsconfig.json
+================
+{
+  "extends": "../.nuxt/tsconfig.server.json"
+}
+
+================
+File: .eslintrc.cjs
+================
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    es2023: true
+  },
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:vue/vue3-recommended',
+    'plugin:nuxt/recommended',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 2023,
+    sourceType: 'module',
+    parser: '@typescript-eslint/parser'
+  },
+  plugins: ['@typescript-eslint', 'vue'],
+  rules: {
+    'no-undef': 'warn',
+    semi: ['error', 'always'],
+    'no-console': 'warn',
+    camelcase: 'off',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'import/default': 'off',
+    eqeqeq: ['error', 'always'],
+    'space-before-function-paren': ['error', {
+      anonymous: 'never',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'always',
+        normal: 'never',
+        component: 'always'
+      },
+      svg: 'always',
+      math: 'always'
+    }],
+    'vue/multi-word-component-names': ['error', {
+      ignores: ['main', 'index', 'report', 'settings', 'default', 'Navbar', 'Recaptcha2'] // 在這裡添加你想忽略的單詞組件名
+    }]
+  },
+  overrides: [
+    {
+      files: ['*.vue'],
+      parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser'
+      }
+    },
+    {
+      files: ['*.js', '*.jsx'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off'
+      }
+    }
+  ],
+  globals: {
+    defineNuxtPlugin: 'readonly',
+    useNuxtApp: 'readonly',
+    useRuntimeConfig: 'readonly',
+    $fetch: 'readonly',
+    useFetch: 'readonly',
+    useAsyncData: 'readonly',
+    defineNuxtRouteMiddleware: 'readonly',
+    defineNuxtConfig: 'readonly',
+    defineEventHandler: 'readonly',
+    nitroPlugin: 'readonly',
+    useNuxtData: 'readonly',
+    useRoute: 'readonly',
+    useRouter: 'readonly',
+    useState: 'readonly',
+    ref: 'readonly',
+    computed: 'readonly',
+    watch: 'readonly',
+    onMounted: 'readonly',
+    onUnmounted: 'readonly',
+    navigateTo: 'readonly',
+    nuxtApp: 'readonly',
+    definePageMeta: 'readonly',
+    useHead: 'readonly'
+  }
+};
+
+================
+File: .gitignore
+================
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+================
+File: app.vue
+================
+<template>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
+</template>
+
+================
+File: README.md
+================
+# Nuxt 3 Minimal Starter
+
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# npm
+npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+================
+File: tsconfig.json
+================
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
+}
+
+================
+File: assets/css/main.css
+================
+/* Google Material icons */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500;600;700&display=swap');
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,500,700,900&subset=chinese-traditional&display=swap');
+
+html, body, #__nuxt, #__layout {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0; 
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* 淺色主題 */
+  --light-bg-primary: #f0f4f8;
+  --light-bg-secondary: #ffffff;
+  --light-text-primary: #2d3748;
+  --light-text-secondary: #4a5568;
+  --light-accent: #3182ce;
+
+  /* Dark Theme Colors */
+
+  /* Primary Colors */
+  --primary-color: #fc9255; /* 鮮明的橘色，作為主要按鈕或強調色 */
+  --primary-variant: #3700b3; /* 較深的變種，作為主要色的深色版本 */
+  --secondary-color: #03dac6; /* 淺綠色，作為次要按鈕或連結的顏色 */
+
+  /* Background Colors */
+  --background-color: #121212; /* 全局背景顏色 */
+  --surface-color: #1e1e1e; /* 用於卡片、對話框等表面區域 */
+  --dark-bg-primary: #121212; /* 主背景顏色 */
+  --dark-bg-secondary: #1e1e1e; /* 次背景顏色 */
+
+  /* Text Colors */
+  --on-primary-color: #000000; /* 主色上的文字顏色，通常是黑色 */
+  --on-secondary-color: #000000; /* 次色上的文字顏色 */
+  --on-background-color: #ffffff; /* 背景上的文字顏色 */
+  --on-surface-color: #ffffff; /* 表面上的文字顏色 */
+  --dark-text-primary: #f7fafc; /* 主要文字顏色 */
+  --dark-text-secondary: #e2e8f0; /* 次要文字顏色 */
+  --accent: #63b3ed; /* 藍色作為強調色 */
+
+  /* Error Colors */
+  --error-color: #cf6679; /* 錯誤信息的顏色 */
+  --on-error-color: #000000; /* 錯誤提示中的文字顏色 */
+
+  /* Other Colors */
+  --divider-color: rgba(255, 255, 255, 0.12); /* 分割線的顏色，透明度較低 */
+  --disabled-color: rgba(255, 255, 255, 0.38); /* 禁用狀態的顏色 */
+  --hint-color: rgba(255, 255, 255, 0.38); /* 提示文字的顏色 */
+  --icon-color: rgba(255, 255, 255, 0.87); /* 圖標顏色，較高的透明度 */
+  --hover-overlay: rgba(255, 255, 255, 0.08); /* 滑過的背景覆蓋層 */
+
+  /* 默認使用深色主題 */
+  --bg-primary: var(--dark-bg-primary);
+  --bg-secondary: var(--dark-bg-secondary);
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --accent: var(--accent);
+}
+
+/* Example CSS using the variables */
+body {
+  background-color: var(--background-color);
+  color: var(--on-background-color);
+  font-family: 'NOTO Sans TC';
+  
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.page-title {
+  color: var(--primary-color);
+  /* letter-spacing: 1rem; */
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-variant);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.card {
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.disabled {
+  color: var(--disabled-color);
+}
+
+.header, .footer {
+  /* background-color: var(--surface-color); */
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2rem;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.scrollable {
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+h2, h3 {
+  color: var(--primary-color)
+}
+
+/* 可選：為觸摸設備添加滾動慣性 */
+@media (pointer: fine) {
+  .scrollable {
+    overflow-y: overlay;
+  }
+}
+
+================
+File: components/ProjectCard.vue
+================
+<template>
+  <div class="project-card" @click="toggleDetails">
+    <div class="project-image-container">
+      <img :src="project.img" :alt="project.title" class="project-image">
+      <span v-if="project.year" class="image-year">{{ project.year }}</span>
+    </div>
+    <div class="project-title">
+      <h3>{{ project.title }}</h3>
+    </div>
+    <div class="project-info">
+      <p class="description">{{ project.description || $t('components.projectCard.noDescription') }}</p>
+    </div>
+    <div class="tech-icons">
+      <Icon
+        v-for="tech in project.technologies"
+        :key="tech"
+        :icon="getTechIcon(tech)"
+        :title="tech"
+        :class="['tech-icon', tech.toLowerCase()]"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+import { Icon, addIcon } from '@iconify/vue';
+import { useI18n } from '#imports';
+
+const { t } = useI18n();
+const props = defineProps({
+  project: {
+    type: Object,
+    required: true,
+  },
+});
+
+// console.log('ProjectCard received project:', props.project);
+const showDetails = ref(false);
+
+const toggleDetails = () => {
+  showDetails.value = !showDetails.value;
+};
+
+addIcon('lambert:tech-icon', {
+  body: `<svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0980787 27.0095C-0.407069 29.3471 1.08887 31.6539 3.43936 32.1618C3.47754 32.1701 3.5157 32.1778 3.55385 32.185C3.75763 32.2478 3.96905 32.2808 4.18583 32.2808H20.6102C22.2732 32.2808 23.6213 30.3357 23.6213 27.9363C23.6213 25.5369 22.2732 23.5918 20.6102 23.5918H9.74598L13.599 5.76187C14.1041 3.42426 12.6082 1.11749 10.2577 0.609562C7.90719 0.101631 5.59223 1.58488 5.08709 3.92249L0.0980787 27.0095ZM7.31616 23.5918L11.2775 5.26022C11.5072 4.19767 10.8272 3.14914 9.75877 2.91826C8.69037 2.68738 7.63812 3.36159 7.40851 4.42414L3.21678 23.8217C3.52087 23.6726 3.8468 23.5918 4.18583 23.5918H4.48136L8.56922 4.67496C8.66106 4.24994 9.08196 3.98026 9.50932 4.07261C9.93668 4.16496 10.2087 4.58437 10.1168 5.00939L6.10125 23.5918H7.31616ZM5.58916 25.9615H6.80407L6.54802 27.1464H5.33311L5.58916 25.9615ZM3.96368 25.9874C3.31342 26.1405 2.81713 26.9548 2.81713 27.9363C2.81713 28.7886 3.1913 29.5147 3.71556 29.7914C3.78769 29.816 3.86199 29.8366 3.93826 29.8531C4.87321 30.0551 5.79578 29.5641 6.16555 28.7262H4.18582C4.0286 28.7262 3.88687 28.6306 3.78702 28.4775C3.60866 28.2946 3.52242 28.0294 3.58021 27.762L3.96368 25.9874ZM8.23041 29.9111C8.39925 29.5826 8.52826 29.2269 8.60995 28.8489L8.63645 28.7262H20.6102C20.9126 28.7262 21.1577 28.3726 21.1577 27.9363C21.1577 27.5001 20.9126 27.1464 20.6102 27.1464H8.97785L9.23389 25.9615H20.6102C21.3661 25.9615 21.9789 26.8457 21.9789 27.9363C21.9789 29.027 21.3661 29.9111 20.6102 29.9111H8.23041Z" fill="url(#paint0_linear_107_111)"/>
+<defs>
+<linearGradient id="paint0_linear_107_111" x1="0.0885412" y1="0.421169" x2="23.5344" y2="32.3447" gradientUnits="userSpaceOnUse">
+<stop offset="0.244792" stop-color="#3C44FA"/>
+<stop offset="0.854167" stop-color="#F05600"/>
+</linearGradient>
+</defs>
+</svg>
+`,
+  width: 24,
+  height: 33
+});
+
+addIcon('emqx:tech-icon', {
+  body: `<svg width="28" height="11" viewBox="0 0 28 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.56641 7.69336V9H1.86328V7.69336H5.56641ZM2.31445 0.46875V9H0.744141V0.46875H2.31445ZM5.06836 3.97266V5.24414H1.86328V3.97266H5.06836ZM5.54297 0.46875V1.78125H1.86328V0.46875H5.54297ZM7.19531 0.46875H8.5957L10.4531 6.5625L12.293 0.46875H13.5645L11.0332 9H9.86133L7.19531 0.46875ZM6.65039 0.46875H7.96875L8.17383 6V9H6.65039V0.46875ZM12.9199 0.46875H14.2441V9H12.7207V6L12.9199 0.46875ZM19.6699 7.76953L21.6738 9.58594L20.6777 10.5059L18.7148 8.70117L19.6699 7.76953ZM21.6211 4.05469V5.41406C21.6211 6.02734 21.5488 6.56641 21.4043 7.03125C21.2637 7.49219 21.0586 7.87695 20.7891 8.18555C20.5234 8.49414 20.2051 8.72656 19.834 8.88281C19.4629 9.03906 19.0527 9.11719 18.6035 9.11719C18.1504 9.11719 17.7383 9.03906 17.3672 8.88281C17 8.72656 16.6816 8.49414 16.4121 8.18555C16.1465 7.87695 15.9395 7.49219 15.791 7.03125C15.6426 6.56641 15.5684 6.02734 15.5684 5.41406V4.05469C15.5684 3.44141 15.6406 2.9043 15.7852 2.44336C15.9297 1.98242 16.1367 1.59766 16.4062 1.28906C16.6758 0.976563 16.9941 0.742188 17.3613 0.585938C17.7324 0.429687 18.1426 0.351562 18.5918 0.351562C19.0449 0.351562 19.457 0.429687 19.8281 0.585938C20.1992 0.742188 20.5195 0.976563 20.7891 1.28906C21.0586 1.59766 21.2637 1.98242 21.4043 2.44336C21.5488 2.9043 21.6211 3.44141 21.6211 4.05469ZM20.0566 5.41406V4.04297C20.0566 3.625 20.0254 3.26562 19.9629 2.96484C19.9004 2.66406 19.8066 2.41992 19.6816 2.23242C19.5566 2.04102 19.4023 1.90039 19.2188 1.81055C19.0391 1.7207 18.8301 1.67578 18.5918 1.67578C18.3574 1.67578 18.1484 1.7207 17.9648 1.81055C17.7852 1.90039 17.6328 2.04102 17.5078 2.23242C17.3867 2.41992 17.293 2.66406 17.2266 2.96484C17.1641 3.26562 17.1328 3.625 17.1328 4.04297V5.41406C17.1328 5.83594 17.1641 6.19727 17.2266 6.49805C17.293 6.79883 17.3887 7.04688 17.5137 7.24219C17.6387 7.43359 17.791 7.57422 17.9707 7.66406C18.1543 7.75391 18.3652 7.79883 18.6035 7.79883C18.8379 7.79883 19.0449 7.75391 19.2246 7.66406C19.4082 7.57422 19.5625 7.43359 19.6875 7.24219C19.8125 7.04688 19.9043 6.79883 19.9629 6.49805C20.0254 6.19727 20.0566 5.83594 20.0566 5.41406ZM24.1465 2.66016L24.9961 4.42969L25.7637 2.66016H27.3809L25.7344 5.76562L27.4395 9H25.8164L24.9375 7.16602L24.0938 9H22.459L24.1113 5.7832L22.5176 2.66016H24.1465Z" fill="white"/>
+</svg>
+`,
+  width: 28,
+  height: 11
+});
+
+const getTechIcon = (tech) => {
+  const techIcons = {
+    'JavaScript': 'vscode-icons:file-type-js',
+    'Python': 'material-icon-theme:python',
+    'Nuxt': 'vscode-icons:file-type-nuxt',
+    'Vue.js': 'skill-icons:vuejs-light',
+    'FastAPI': 'devicon:fastapi',
+    'Figma': 'material-icon-theme:figma',
+    'Flutter': 'vscode-icons:file-type-flutter',
+    'Django': 'material-icon-theme:django',
+    'Docker': 'material-icon-theme:docker',
+    'Bun': 'devicon:bun',
+    'Flask': 'simple-icons:flask',
+    'Emqx': 'emqx:tech-icon',
+    'MQTT': 'cbi:mqtt',
+    'Golang': 'devicon:go-wordmark',
+    'SMS': 'material-symbols:sms-outline',
+    'Line': 'mage:line',
+    'Email': 'ic:outline-email',
+    "Gmail": 'logos:google-gmail',
+    'Lambert': 'lambert:tech-icon'
+  };
+  return techIcons[tech] || 'mdi:help-circle-outline';
+};
+</script>
+<style scoped>
+.project-card {
+  /* 使用相對單位替代固定像素 */
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3/4; /* 維持 300x400 的比例 */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex: 0 0 auto;
+  margin-right: clamp(10px, 2vw, 20px); /* 響應式邊距 */
+}
+
+.project-card:last-child {
+  margin-right: 0;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 8px rgba(255,255,255,0.7);
+}
+
+.project-image-container {
+  position: relative;
+  height: 40%;
+  min-height: 120px; /* 確保小螢幕有最小高度 */
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.image-year {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: clamp(10px, 1vw, 12px); /* 響應式字體大小 */
+}
+
+h3 {
+  letter-spacing: 2px;
+  margin: 10px;
+  font-size: clamp(14px, 1.5vw, 18px); /* 響應式標題大小 */
+}
+
+.project-info {
+  height: 30%;
+  overflow-y: auto;
+  min-height: 80px; /* 確保小螢幕有最小高度 */
+}
+
+.description {
+  margin: 0 10px;
+  font-size: clamp(12px, 1vw, 14px); /* 響應式字體大小 */
+  white-space: break-spaces;
+}
+
+.tech-icons {
+  height: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  min-height: 40px; /* 確保小螢幕有最小高度 */
+}
+
+.project-details {
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.tech-icon {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* 響應式圖標大小 */
+  margin: 5px;
+}
+
+.tech-icon.line {
+  color: #00c641;
+}
+
+/* 媒體查詢：適應不同螢幕尺寸 */
+@media (max-width: 480px) {
+  .project-card {
+    max-width: 85vw; /* 小螢幕上幾乎滿寬 */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .project-card {
+    max-width: 250px; /* 中等螢幕稍微縮小 */
+  }
+  .tech-icons {
+    margin: 4px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .project-card {
+    max-width: 280px; /* 大螢幕接近原尺寸 */
+  }
+}
+
+@media (min-width: 1025px) {
+  .project-card {
+    max-width: 300px; /* 超大螢幕保持原尺寸 */
+  }
+}
+</style>
+
+================
+File: components/ProjectsSection.vue
+================
+<template>
+  <div class="fullpage-section projects-section">
+    <h1 class="page-title">{{ $t('projects') }}</h1>
+    
+    <!-- 小螢幕輪播模式 -->
+    <div v-if="isSmallScreen" class="projects-carousel">
+      <div class="carousel-navigation">
+        <button class="nav-button prev" @click="prevCard" aria-label="上一個專案">
+          &lt;
+        </button>
+        <div class="carousel-indicators">
+          <span 
+            v-for="(_, index) in projects" 
+            :key="index" 
+            :class="['dot', { active: currentCardIndex === index }]"
+            @click="goToCard(index)"
+          ></span>
+        </div>
+        <button class="nav-button next" @click="nextCard" aria-label="下一個專案">
+          &gt;
+        </button>
+      </div>
+      <div class="carousel-container" ref="carouselContainer">
+        <ProjectCard 
+          v-for="(project, index) in projects"
+          :key="`carousel-${project.title}`"
+          :project="project"
+          :class="['project-card', { active: currentCardIndex === index }]"
+          @mouseenter="pauseCarousel"
+          @mouseleave="resumeCarousel"
+        />
+      </div>
+    </div>
+    
+    <!-- 大螢幕無縫捲動模式 -->
+    <div 
+      v-else
+      ref="projectsContainer" 
+      class="projects"
+      @mousedown="startDrag"
+      @mousemove="onDrag"
+      @mouseup="stopDrag"
+      @mouseleave="stopDrag"
+      @touchstart="startDragTouch"
+      @touchmove="onDragTouch"
+      @touchend="stopDragTouch"
+    >
+      <div class="projects-wrapper" ref="projectsWrapper">
+        <ProjectCard 
+          v-for="project in projects"
+          :key="`original-${project.title}`" 
+          :project="project"
+          class="project-card"
+          @mouseenter="pauseScroll"
+          @mouseleave="resumeScroll"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
+import { useScrollManager } from '~/composables/useScrollManager';
+
+useHead({
+  title: 'Barn'
+})
+const props = defineProps({
+  projects: {
+    type: Array,
+    required: true
+  },
+  isLastSection: {
+    type: Boolean,
+    default: false
+  }
+});
+
+const { enableScrolling } = useScrollManager();import ProjectCard from './ProjectCard.vue';
+
+// 螢幕尺寸檢測
+const isSmallScreen = ref(false);
+const SMALL_SCREEN_BREAKPOINT = 768; 
+
+// 輪播相關
+const currentCardIndex = ref(0);
+const carouselContainer = ref(null);
+let carouselInterval = null;
+let carouselPaused = false;
+const CAROUSEL_INTERVAL = 4000; 
+
+// 無縫捲動相關
+const projectsContainer = ref(null);
+const projectsWrapper = ref(null);
+let animationId = null;
+let isPaused = false;
+let clonedCardsAdded = false;
+let isResetting = false;
+let lastTimestamp = 0;
+let originalCardsWidth = 0; // 儲存原始卡片總寬度
+
+// 拖曳相關變數
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
+
+// 設定滾動速度 (每毫秒移動的像素)
+const SCROLL_SPEED = 0.07;
+
+// 檢查螢幕尺寸
+const checkScreenSize = () => {
+  isSmallScreen.value = window.innerWidth < SMALL_SCREEN_BREAKPOINT;
+};
+
+// 輪播功能
+const setupCarousel = () => {
+  clearCarouselInterval();
+  currentCardIndex.value = 0;
+  startCarouselInterval();
+};
+
+const startCarouselInterval = () => {
+  if (!carouselPaused) {
+    carouselInterval = setInterval(nextCard, CAROUSEL_INTERVAL);
+  }
+};
+
+const clearCarouselInterval = () => {
+  if (carouselInterval) {
+    clearInterval(carouselInterval);
+    carouselInterval = null;
+  }
+};
+
+const nextCard = () => {
+  currentCardIndex.value = (currentCardIndex.value + 1) % props.projects.length;
+};
+
+const prevCard = () => {
+  currentCardIndex.value = (currentCardIndex.value - 1 + props.projects.length) % props.projects.length;
+};
+
+const goToCard = (index) => {
+  currentCardIndex.value = index;
+};
+
+const pauseCarousel = () => {
+  carouselPaused = true;
+  clearCarouselInterval();
+};
+
+const resumeCarousel = () => {
+  carouselPaused = false;
+  startCarouselInterval();
+};
+
+// 計算原始卡片的總寬度
+const calculateOriginalWidth = () => {
+  if (!projectsWrapper.value) return 0;
+  
+  // 獲取所有原始卡片 (不包括複製的)
+  const originalCards = Array.from(projectsWrapper.value.children).slice(0, props.projects.length);
+  if (originalCards.length === 0) return 0;
+  
+  // 手動計算總寬度 (卡片寬度 + 外邊距 + 間距)
+  let totalWidth = 0;
+  
+  // 獲取間隔寬度
+  const gap = parseInt(window.getComputedStyle(projectsWrapper.value).gap) || 20;
+  
+  // 計算每個卡片的總寬度 (包含間隔)
+  originalCards.forEach((card, index) => {
+    const cardWidth = card.offsetWidth;
+    const style = window.getComputedStyle(card);
+    const marginRight = parseInt(style.marginRight) || 0;
+    const marginLeft = parseInt(style.marginLeft) || 0;
+    
+    totalWidth += cardWidth + marginRight + marginLeft;
+    
+    // 添加間隔 (除了最後一個卡片)
+    if (index < originalCards.length - 1) {
+      totalWidth += gap;
+    }
+  });
+  
+  return totalWidth;
+};
+
+// 複製卡片以實現無縫捲動
+const setupInfiniteScroll = async () => {
+  if (!projectsWrapper.value || clonedCardsAdded || isSmallScreen.value) return;
+  
+  // 等待原始卡片渲染完成
+  await nextTick();
+  
+  // 獲取所有原始卡片
+  const originalCards = Array.from(projectsWrapper.value.querySelectorAll('.project-card')).slice(0, props.projects.length);
+  
+  if (originalCards.length === 0) return;
+  
+  // 計算原始卡片的總寬度
+  originalCardsWidth = calculateOriginalWidth();
+  
+  // 複製所有卡片
+  originalCards.forEach((card, index) => {
+    const clone = card.cloneNode(true);
+    // 新增唯一key避免Vue警告
+    clone.setAttribute('data-key', `cloned-${index}`);
+    // 為複製的卡片添加相同的事件處理
+    clone.addEventListener('mouseenter', pauseScroll);
+    clone.addEventListener('mouseleave', resumeScroll);
+    projectsWrapper.value.appendChild(clone);
+  });
+  
+  clonedCardsAdded = true;
+  
+  // 開始自動滾動
+  if (!animationId) {
+    lastTimestamp = 0;
+    animationId = requestAnimationFrame(autoScroll);
+  }
+};
+
+const autoScroll = (timestamp) => {
+  if (isSmallScreen.value) {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    return;
+  }
+  
+  if (!lastTimestamp) lastTimestamp = timestamp;
+  const deltaTime = timestamp - lastTimestamp;
+  lastTimestamp = timestamp;
+  
+  if (!isPaused && !isDragging && projectsContainer.value && !isResetting && originalCardsWidth > 0) {
+    // 使用deltaTime確保滾動速度一致，無論幀率如何
+    projectsContainer.value.scrollLeft += SCROLL_SPEED * deltaTime;
+    
+    // 檢測是否需要重置捲動位置
+    checkScrollPosition();
+  }
+  
+  animationId = requestAnimationFrame(autoScroll);
+};
+
+const checkScrollPosition = () => {
+  if (!projectsContainer.value || originalCardsWidth <= 0) return;
+  
+  // 當scrollLeft達到或超過原始卡片總寬度時重置
+  if (projectsContainer.value.scrollLeft >= originalCardsWidth) {
+    // 防止重置過程中的抖動
+    isResetting = true;
+    
+    // 直接重置到開始位置，無需計算偏移
+    projectsContainer.value.scrollLeft = 0;
+    
+    // 允許捲動繼續
+    setTimeout(() => {
+      isResetting = false;
+    }, 20);
+  }
+};
+
+const pauseScroll = () => {
+  isPaused = true;
+};
+
+const resumeScroll = () => {
+  isPaused = false;
+};
+
+// 滑鼠拖曳相關函數
+const startDrag = (e) => {
+  if (!projectsContainer.value) return;
+  
+  isDragging = true;
+  startX = e.pageX - projectsContainer.value.offsetLeft;
+  scrollLeft = projectsContainer.value.scrollLeft;
+  
+  // 變更游標樣式
+  projectsContainer.value.style.cursor = 'grabbing';
+  document.body.style.userSelect = 'none';
+};
+
+const onDrag = (e) => {
+  if (!isDragging || !projectsContainer.value) return;
+  
+  e.preventDefault();
+  const x = e.pageX - projectsContainer.value.offsetLeft;
+  const walk = (x - startX) * 1.5; // 滾動倍率
+  projectsContainer.value.scrollLeft = scrollLeft - walk;
+};
+
+const stopDrag = () => {
+  if (!projectsContainer.value) return;
+  
+  isDragging = false;
+  projectsContainer.value.style.cursor = 'grab';
+  document.body.style.userSelect = '';
+  
+  // 重新檢查位置，確保無縫循環
+  checkScrollPosition();
+};
+
+// 觸控事件處理
+const startDragTouch = (e) => {
+  if (!projectsContainer.value) return;
+  
+  isDragging = true;
+  startX = e.touches[0].pageX - projectsContainer.value.offsetLeft;
+  scrollLeft = projectsContainer.value.scrollLeft;
+};
+
+const onDragTouch = (e) => {
+  if (!isDragging || !projectsContainer.value) return;
+  
+  const x = e.touches[0].pageX - projectsContainer.value.offsetLeft;
+  const walk = (x - startX) * 1.5; // 滾動倍率
+  projectsContainer.value.scrollLeft = scrollLeft - walk;
+};
+
+const stopDragTouch = () => {
+  isDragging = false;
+  
+  // 重新檢查位置，確保無縫循環
+  checkScrollPosition();
+};
+
+onMounted(async () => {
+  // 初始檢查螢幕尺寸並設置對應模式
+  checkScreenSize();
+
+  setTimeout(() => {
+    if (isSmallScreen.value) {
+      setupCarousel();
+    } else {
+      setupInfiniteScroll();
+    }
+  }, 2000);
+
+  // 視窗大小改變時重新檢查
+  window.addEventListener('resize', handleResize);
+});
+
+const handleResize = () => {
+  // 停止所有動畫和計時器
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+  
+  clearCarouselInterval();
+  
+  // 重置所有狀態
+  isResetting = false;
+  isPaused = false;
+  isDragging = false;
+  lastTimestamp = 0;
+  
+  // 清理複製元素
+  if (projectsWrapper.value && !isSmallScreen.value) {
+    const children = Array.from(projectsWrapper.value.children);
+    children.slice(props.projects.length).forEach(child => {
+      projectsWrapper.value.removeChild(child);
+    });
+  }
+  
+  // 重置狀態
+  clonedCardsAdded = false;
+  originalCardsWidth = 0;
+  
+  // 重新檢查螢幕尺寸並設置相應模式
+  checkScreenSize();
+};
+
+onBeforeUnmount(() => {
+  // 清理所有計時器和動畫
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+  }
+  
+  clearCarouselInterval();
+  window.removeEventListener('resize', handleResize);
+
+  enableScrolling();
+});
+</script>
+
+<style scoped>
+.projects-section {
+  /* margin: 24px; */
+  padding: 2rem 1rem;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 大螢幕無縫捲動樣式 */
+.projects {
+  width: 95%;
+  height: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: auto;
+  cursor: grab;
+  user-select: none;
+}
+
+.projects:active {
+  cursor: grabbing;
+}
+
+.projects-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  will-change: transform;
+}
+
+.projects::-webkit-scrollbar {
+  display: none;
+}
+
+/* 小螢幕輪播樣式 */
+.projects-carousel {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-container {
+  width: 100%;
+  position: relative;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-button {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+/* 輪播卡片樣式 */
+.projects-carousel .project-card {
+  position: absolute;
+  width: 90%;
+  max-width: 300px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  transform: scale(0.8) translateX(100%);
+}
+
+.projects-carousel .project-card.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateX(0);
+}
+
+@media (min-width: 768px) {
+  /* 若需調整大螢幕下的佈局 */
+  .project-card {
+    margin-right: 0;
+  }
+}
+</style>
+
+================
+File: layouts/default.vue
+================
+<template>
+  <div class="site-layout">
+    <AppHeader />
+    
+    <main class="main-content">
+      <slot />
+    </main>
+    
+    <AppFooter />
+  </div>
+</template>
+
+<script setup>
+import { ref, provide } from 'vue';
+import AppHeader from '~/components/AppHeader.vue';
+import AppFooter from '~/components/AppFooter.vue';
+
+const headerRef = ref(null);
+const footerRef = ref(null);
+provide('headerElement', headerRef);
+provide('footerElement', footerRef);
+</script>
+
+================
+File: pages/index.vue
+================
+<template>
+  <div class="fullpage-container">
+    <IntroSection 
+      :fullText="fullText"
+      :fullDescription="fullDescription"
+      :tags="tags"
+      :isLastSection="currentSection === sections.length - 1"
+      class="fullpage-section"
+      :class="{ 'active': currentSection === 0 }"
+    />
+    <!-- <SkillsSection :skills="skills" /> -->
+    <!-- <TimelineSection :isLastSection="currentSection === sections.length - 1" /> -->
+    <!-- 可以繼續添加更多 section -->
+    <ProjectsSection 
+      :projects="projects" 
+      :isLastSection="currentSection === sections.length - 1" 
+      class="fullpage-section"
+      :class="{ 'active': currentSection === 1 }"
+    />
+    
+    <!-- 視覺提示 - 當不是最後一頁時顯示 -->
+    <div class="section-indicator" v-if="!isTransitioning">
+      <div class="indicator-dot" v-for="(_, index) in sections" :key="index" 
+        :class="{ 'active': currentSection === index }"
+        @click="scrollToSection(index)"></div>
+    </div>
+    
+    <!-- 開發模式下的調試信息 -->
+    <div v-if="false" class="debug-info">
+      <p>當前區塊: {{ currentSection + 1 }}/{{ sections.length }}</p>
+      <p>過渡中: {{ isTransitioning }}</p>
+      <p>滾動方向趨勢: {{ scrollTrend }}</p>
+      <p>滾動位置比例: {{ scrollRatio.toFixed(2) }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import IntroSection from '~/components/IntroSection.vue'
+import SkillsSection from '~/components/SkillSection.vue'
+import TimelineSection from '~/components/TimelineSection.vue'
+import ProjectsSection from '~/components/ProjectsSection.vue'
+import { useI18n } from '#imports';
+import { useScrollManager } from '~/composables/useScrollManager';
+
+const { disableScrolling, enableScrolling } = useScrollManager();
+const { t, tm, locale } = useI18n();
+
+// 實際資料為component內抓取I18n
+const fullText = "您好！\n\n歡迎來到我的個人網站"
+const fullDescription = "我是 Lambert，一名對IoT技術、人工智慧熱忱且將其融入生活的全端工程師\n誠如我的個人Logo，結合藍色與橘色，藍色代表科技，橘色代表熱忱。\nLambert's Barn 一點一點累積了這一路上的汗水、歡笑與坑洞，成為現在的我。"
+
+const tags = ref(['Lambert', '台灣', '旅行', '技術狂熱', '學無止境', '閱讀', '行動派', '美食探索者', '孩子的爸爸', '斜槓青年', '知識分享者'])
+
+const skills = [
+  { icon: 'code', name: '領域 1' },
+  { icon: 'design_services', name: '領域 2' },
+  { icon: 'analytics', name: '領域 3' }
+]
+
+const projects = computed(() => {
+  const rawProjects = tm('project.items') || [];
+  
+  return rawProjects.map(project => ({
+    id: project.id?.body?.static || '',
+    title: project.title?.body?.static || '',
+    year: project.year?.body?.static || '',
+    description: project.description?.body?.static || '',
+    fullDescription: project.fullDescription?.body?.static || '',
+    img: project.img?.body?.static || '',
+    technologies: Array.isArray(project.technologies) 
+      ? project.technologies.map(tech => tech?.body?.static || '') 
+      : []
+  }));
+});
+
+const sections = ref([]);
+const currentSection = ref(0);
+const isTransitioning = ref(false);
+const scrollEvents = ref([]);
+const scrollTrend = ref('無');
+const scrollRatio = ref(0);
+let lastScrollTime = 0;
+const transitionDuration = 600; // 毫秒
+const SCROLL_THRESHOLD = 0.98; // 捲動到內容的98%時才切換頁面（非常接近底部）
+const SCROLL_THROTTLE = 150; // 滾動節流時間（毫秒）
+const CONSECUTIVE_SCROLL_COUNT = 3; // 需要多少次連續滾動才觸發頁面切換
+
+// 滾動事件處理器 - 直接使用防抖而非節流
+const handleScroll = (e) => {
+  // 如果正在過渡中，完全阻止滾動
+  if (isTransitioning.value) {
+    e.preventDefault();
+    return;
+  }
+
+  // 防抖：只在滾動間隔足夠大時處理
+  const now = Date.now();
+  if (now - lastScrollTime < SCROLL_THROTTLE) {
+    e.preventDefault(); // 阻止過於頻繁的滾動
+    return;
+  }
+  lastScrollTime = now;
+
+  // 記錄滾動方向
+  const deltaY = e.deltaY;
+  recordScrollDirection(deltaY);
+
+  // 獲取當前活動的section元素
+  const currentEl = sections.value[currentSection.value];
+  if (!currentEl) return;
+  
+  // 使用專門的函數來處理邊界檢測
+  const boundaryInfo = checkScrollBoundary(currentEl, deltaY);
+  scrollRatio.value = boundaryInfo.ratio;
+  
+  // 只有當滾動到邊界並且有連續的滾動趨勢時才切換部分
+  if (boundaryInfo.atBoundary && hasConsistentScrollDirection(deltaY)) {
+    if (deltaY > 0 && currentSection.value < sections.value.length - 1) {
+      // 向下滾動到底部
+      e.preventDefault(); // 先阻止默認行為
+      scrollToNextSection();
+    } else if (deltaY < 0 && currentSection.value > 0) {
+      // 向上滾動到頂部
+      e.preventDefault(); // 先阻止默認行為
+      scrollToPrevSection();
+    }
+  }
+};
+
+// 記錄滾動方向以檢測趨勢
+const recordScrollDirection = (deltaY) => {
+  const now = Date.now();
+  
+  // 添加新的滾動事件
+  scrollEvents.value.push({
+    direction: deltaY > 0 ? 'down' : 'up',
+    timestamp: now
+  });
+  
+  // 只保留最近1秒內的事件
+  scrollEvents.value = scrollEvents.value.filter(event => 
+    now - event.timestamp < 1000
+  );
+};
+
+// 檢查是否有連續的滾動方向
+const hasConsistentScrollDirection = (deltaY) => {
+  if (scrollEvents.value.length < CONSECUTIVE_SCROLL_COUNT) {
+    scrollTrend.value = '不足';
+    return false;
+  }
+  
+  // 獲取最近的N次滾動事件
+  const recentEvents = scrollEvents.value.slice(-CONSECUTIVE_SCROLL_COUNT);
+  
+  // 檢查是否都是同一方向
+  const expectedDirection = deltaY > 0 ? 'down' : 'up';
+  const allSameDirection = recentEvents.every(event => 
+    event.direction === expectedDirection
+  );
+  
+  scrollTrend.value = allSameDirection ? expectedDirection : 'mixed';
+  return allSameDirection;
+};
+
+// 獨立的邊界檢測函數
+const checkScrollBoundary = (element, deltaY) => {
+  // 根據元素類型選擇合適的滾動內容元素
+  let scrollElement = null;
+  let projectsGrid = null;
+  
+  // 針對 ProjectsSection 的特殊處理
+  if (element.classList.contains('projects-section')) {
+    projectsGrid = element.querySelector('.projects-grid');
+    if (projectsGrid) {
+      scrollElement = projectsGrid;
+    }
+  }
+  
+  // 如果沒有找到特定的滾動元素，使用 section 本身
+  if (!scrollElement) {
+    scrollElement = element;
+  }
+  
+  // 獲取滾動信息
+  const { scrollTop, scrollHeight, clientHeight } = scrollElement;
+  
+  let ratio = 0;
+  let atBoundary = false;
+  
+  // 根據滾動方向檢查是否到達邊界
+  if (deltaY > 0) { // 向下滾動
+    // 計算已滾動的比例
+    ratio = (scrollTop + clientHeight) / scrollHeight;
+    atBoundary = ratio >= SCROLL_THRESHOLD; // 非常接近底部
+  } else { // 向上滾動
+    ratio = scrollTop / scrollHeight;
+    atBoundary = scrollTop <= 1; // 非常接近頂部（允許1像素誤差）
+  }
+  
+  return { atBoundary, ratio };
+};
+
+// 滾動到下一區塊
+const scrollToNextSection = () => {
+  if (currentSection.value < sections.value.length - 1 && !isTransitioning.value) {
+    isTransitioning.value = true;
+    currentSection.value++;
+    
+    // 立即隱藏頁面頭尾
+    // hideHeaderFooter();
+    
+    // 重置滾動位置
+    resetScrollPosition(currentSection.value);
+    
+    // 設置過渡完成後的狀態
+    setTimeout(() => {
+      isTransitioning.value = false;
+      scrollEvents.value = []; // 清空滾動事件記錄
+      
+      // 再次確保頁面完全居中
+      centerFullpageContent();
+    }, transitionDuration);
+  }
+};
+
+// 滾動到上一區塊
+const scrollToPrevSection = () => {
+  if (currentSection.value > 0 && !isTransitioning.value) {
+    isTransitioning.value = true;
+    currentSection.value--;
+    
+    // 立即隱藏頁面頭尾
+    // hideHeaderFooter();
+    
+    // 重置滾動位置
+    resetScrollPosition(currentSection.value);
+    
+    // 設置過渡完成後的狀態
+    setTimeout(() => {
+      isTransitioning.value = false;
+      scrollEvents.value = []; // 清空滾動事件記錄
+      
+      // 再次確保頁面完全居中
+      centerFullpageContent();
+    }, transitionDuration);
+  }
+};
+
+// 滾動到指定區塊
+const scrollToSection = (index) => {
+  if (index !== currentSection.value && !isTransitioning.value) {
+    isTransitioning.value = true;
+    currentSection.value = index;
+    
+    // 立即隱藏頁面頭尾
+    // hideHeaderFooter();
+    
+    // 重置滾動位置
+    resetScrollPosition(index);
+    
+    // 設置過渡完成後的狀態
+    setTimeout(() => {
+      isTransitioning.value = false;
+      scrollEvents.value = []; // 清空滾動事件記錄
+      
+      // 再次確保頁面完全居中
+      centerFullpageContent();
+    }, transitionDuration);
+  }
+};
+
+// 重置滾動位置
+const resetScrollPosition = (sectionIndex) => {
+  setTimeout(() => {
+    const section = sections.value[sectionIndex];
+    if (section) {
+      // 根據不同類型的區塊，重置不同的滾動元素
+      if (section.classList.contains('projects-section')) {
+        const projectsGrid = section.querySelector('.projects-grid');
+        if (projectsGrid) {
+          projectsGrid.scrollTop = 0;
+          projectsGrid.scrollLeft = 0;
+        }
+      }
+      
+      // 嘗試重置本身的滾動位置
+      if (section.scrollTo) {
+        section.scrollTo(0, 0);
+      } else {
+        section.scrollTop = 0;
+      }
+      
+      // 確保頁面窗口也重置
+      window.scrollTo(0, 0);
+    }
+  }, 50); // 稍微延遲一下，確保元素可訪問
+};
+
+// 隱藏頁面頭尾
+const hideHeaderFooter = () => {
+  const header = document.querySelector('header.header');
+  const footer = document.querySelector('footer.footer');
+  
+  if (header) {
+    header.style.display = 'none';
+  }
+  
+  if (footer) {
+    footer.style.display = 'none';
+  }
+  
+  // 確保窗口滾動到頂部
+  window.scrollTo(0, 0);
+};
+
+// 確保全頁內容居中顯示
+const centerFullpageContent = () => {
+  nextTick(() => {
+    // 使用 composable 的方法替代直接設置
+    disableScrolling();
+    
+    // 確保窗口滾動到頂部
+    window.scrollTo(0, 0)
+  });
+};
+
+// 觸摸事件處理
+let touchStartY = 0;
+let touchStartTime = 0;
+
+const handleTouchStart = (e) => {
+  touchStartY = e.touches[0].clientY;
+  touchStartTime = Date.now();
+};
+
+const handleTouchMove = (e) => {
+  // 如果正在過渡中，阻止所有觸摸事件
+  if (isTransitioning.value) {
+    e.preventDefault();
+    return;
+  }
+  
+  const touchY = e.touches[0].clientY;
+  const touchTime = Date.now() - touchStartTime;
+  const diff = touchStartY - touchY;
+  
+  // 只處理明確的快速滑動手勢
+  const isQuickSwipe = Math.abs(diff) > 80 && touchTime < 300;
+  
+  if (isQuickSwipe) {
+    const currentEl = sections.value[currentSection.value];
+    
+    if (currentEl) {
+      // 獲取觸摸時的邊界情況
+      const boundaryInfo = checkScrollBoundary(currentEl, diff);
+      
+      if (boundaryInfo.atBoundary) {
+        if (diff > 0 && currentSection.value < sections.value.length - 1) {
+          e.preventDefault();
+          scrollToNextSection();
+        } else if (diff < 0 && currentSection.value > 0) {
+          e.preventDefault();
+          scrollToPrevSection();
+        }
+      }
+    }
+  }
+};
+
+// 鍵盤事件處理
+const handleKeyDown = (e) => {
+  if (isTransitioning.value) return;
+  
+  // 上下箭頭鍵或翻頁鍵
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+    if (currentSection.value < sections.value.length - 1) {
+      e.preventDefault();
+      scrollToNextSection();
+    }
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    if (currentSection.value > 0) {
+      e.preventDefault();
+      scrollToPrevSection();
+    }
+  }
+};
+
+// 添加窗口重調大小事件處理
+const handleResize = () => {
+  // 重置當前section的滾動位置
+  resetScrollPosition(currentSection.value);
+  // 重新居中內容
+  centerFullpageContent();
+};
+
+// 生命週期鉤子
+onMounted(() => {
+  disableScrolling();
+  // 獲取所有 section 元素
+  sections.value = document.querySelectorAll('.fullpage-section');
+  
+  // 添加事件監聽器
+  window.addEventListener('wheel', handleScroll, { passive: false });
+  window.addEventListener('touchstart', handleTouchStart, { passive: true });
+  window.addEventListener('touchmove', handleTouchMove, { passive: false });
+  window.addEventListener('keydown', handleKeyDown, { passive: false });
+  window.addEventListener('resize', handleResize);
+  
+  // 確保初始頁面位於頂部並隱藏頭尾
+  // hideHeaderFooter();
+  resetScrollPosition(currentSection.value);
+  centerFullpageContent();
+});
+
+// 清理事件監聽器
+onBeforeUnmount(() => {
+  window.removeEventListener('wheel', handleScroll);
+  window.removeEventListener('touchstart', handleTouchStart);
+  window.removeEventListener('touchmove', handleTouchMove);
+  window.removeEventListener('keydown', handleKeyDown);
+  window.removeEventListener('resize', handleResize);
+
+  enableScrolling();
+});
+</script>
+
+<style scoped>
+.fullpage-container {
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--background-color);
+}
+
+.fullpage-section {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  scroll-snap-align: start;
+}
+
+.fullpage-section.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+/* 區塊指示器 */
+.section-indicator {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+  background-color: var(--primary-color);
+  transform: scale(1.2);
+}
+
+.indicator-dot:hover {
+  background-color: var(--primary-color);
+  opacity: 0.8;
+}
+
+/* 調試信息面板 */
+.debug-info {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 1000;
+}
+</style>
+
+================
+File: plugins/fontawesome.js
+================
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+export default defineNuxtPlugin((nuxtApp) => {
+  library.add(fab, fas)
+  nuxtApp.vueApp.component('font-awesome-icon', FontAwesomeIcon)
+})
+
+================
+File: components/AppHeader.vue
+================
+<template>
+  <header class="header">
+    <nav class="nav">
+      <img src="/logo.png" alt="Logo" class="logo">
+      <div class="nav-center">
+        <ul class="menu-list">
+          <li>
+            <NuxtLink :to="localePath('/')" class="menu-link">
+              {{ $t('home') }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink :to="localePath('/blog')" class="menu-link">
+              {{ $t('blog') }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink :to="localePath('/about')" class="menu-link">
+              {{ $t('about') }}
+            </NuxtLink>
+          </li>
+        </ul>
+        <LanguageSwitcher />
+      </div>
+      <!-- <ul class="nav-list">
+        <li>
+        </li>
+        <li>
+          <NuxtLink to="/" class="icon-link">
+            <font-awesome-icon :icon="['fas', 'home']" />
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="https://github.com/Honglk" target="_blank" class="icon-link">
+            <font-awesome-icon :icon="['fab', 'github']" />
+          </NuxtLink>
+        </li>
+      </ul> -->
+    </nav>
+  </header>
+</template>
+
+<script setup>
+import LanguageSwitcher from './LanguageSwitcher.vue';
+
+const localePath = useLocalePath();
+</script>
+
+<style scoped>
+.header {
+  padding: 1rem;
+  /* background-color: #f8f9fa; */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.menu-list {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.menu-link {
+  color: var(--on-surface-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+  color: var(--primary-color);
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 統一圖標樣式 */
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  transition: all 0.3s ease;
+}
+
+.icon-link:hover {
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+  transform: translateY(-2px);
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+}
+
+.icon-link {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav-center {
+    order: 3;
+    width: 100%;
+  }
+  
+  .menu-list {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav-list {
+    order: 2;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+</style>
+
+================
+File: components/IntroSection.vue
+================
+<template>
+  <section class="fullpage-section intro">
+    <div class="content">
+      <div class="intro-text">
+        <h1>{{ typedText }}</h1>
+        <p>{{ typedDescription }}</p>
+      </div>
+      <FloatingTags :tags="tags" />
+    </div>
+    <ScrollIndicator v-if="!isLastSection"/>
+  </section>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import FloatingTags from './FloatingTags.vue'
+import ScrollIndicator from './ScrollIndicator.vue';
+
+const { t } = useI18n();
+
+useHead({
+  title: 'Barn'
+})
+
+const props = defineProps({
+  tags: {
+    type: Array,
+    required: true
+  },
+  isLastSection: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const fullText = t('welcome');
+const fullDescription = t('intro_description');
+
+const typedText = ref('')
+const typedDescription = ref('')
+
+const typeText = async (text, target, delay = 100) => {
+  for (let i = 0; i <= text.length; i++) {
+    target.value = text.slice(0, i)
+    await new Promise(resolve => setTimeout(resolve, delay))
+  }
+}
+
+onMounted(async () => {
+  await typeText(fullText, typedText, 50)
+  await typeText(fullDescription, typedDescription, 30)
+})
+</script>
+
+<style scoped>
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-image: url('~/public/logo.png');
+  background-size: 10%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.intro-text {
+  flex: 1;
+  text-align: left;
+  white-space: pre-line;
+  padding-right: 20px;
+}
+
+h1 {
+  color: var(--primary-color);
+  white-space: pre-line;
+}
+</style>
+
+================
+File: nuxt.config.ts
+================
+export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'Lambert\'s Barn',
+      titleTemplate: 'Lambert\'s Barn | %s',
+      meta: [
+        { name: 'description', content: '我是藍博特 Lambert ，歡迎來到 Lambert\' Barn ，這裡記錄了我的生活點滴、工作記錄及專案。' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/logo.png' }
+      ]
+    }
+  },
+  compatibilityDate: '2024-04-03',
+  devtools: { enabled: true },
+  css:['/assets/css/main.css'],
+  plugins: ['~/plugins/fontawesome.js'],
+  modules: [
+    '@nuxtjs/i18n',
+    '@nuxtjs/strapi',
+  ],
+  i18n: {
+    locales: [
+      { code: 'zh-TW', name: '繁體中文', file: 'zh-TW.json' },
+      { code: 'en', name: 'English', file: 'en.json' }
+    ],
+    lazy: true,
+    compositionOnly: false,
+    langDir: '../locales/',
+    defaultLocale: 'zh-TW',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_lang',
+      redirectOn: 'root',
+    }
+  },
+  strapi: {
+    url: process.env.STRAPI_URL || 'http://localhost:1337',
+    prefix: '/api',
+    version: 'v4',
+    cookie: {},
+    cookieName: 'strapi_jwt'
+  }
+})
+
+================
+File: package.json
+================
+{
+  "name": "lamberts-barn",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@iconify/vue": "^4.1.2",
+    "@nuxtjs/i18n": "^9.3.1",
+    "@nuxtjs/strapi": "^2.0.0",
+    "fullpage.js": "^4.0.30",
+    "highlight.js": "^11.11.1",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-highlightjs": "^4.2.0",
+    "markdown-it-replace-link": "^1.2.2",
+    "marked": "^11.1.0",
+    "nuxt": "^3.13.2",
+    "sanitize-html": "^2.14.0",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest"
+  }
+}
+
+
+
+================================================================
+End of Codebase
+================================================================

@@ -1,0 +1,68 @@
+{
+    "welcome": "Hello!\n\nWelcome to my personal website",
+    "intro_description": "I'm Lambert, a full-stack engineer passionate about IoT technology and artificial intelligence, integrating them into life.\nLike my personal logo combining blue and orange, blue represents technology, orange represents passion.\nLambert's Barn has accumulated sweat, laughter, and challenges along the way, shaping who I am today.",
+    "projects": "Projects",
+    "skills": "Expertise",
+    "timeline": "My Journey",
+    "blog": "Blog",
+    "read_more": "Read More",
+    "latest_posts": "Latest Posts",
+    "all_posts": "All Posts",
+    "search": "Search",
+    "categories": "Categories",
+    "tags": "Tags",
+    "published_at": "Published",
+    "updated_at": "Updated",
+    "language": "Language",
+    "zh-TW": "繁體中文",
+    "en": "English",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "copyright": "All rights reserved",
+    "project": {
+      "items": [
+        {
+          "id": "barn",
+          "title": "Lambert's Barn",
+          "year": "1996 ~ 至今",
+          "description": "這是我的個人穀倉\n\n紀錄了我的歷程\n\n只要活著就會更新下去！",
+          "fullDescription": "更多詳細內容...",
+          "img": "/logo.png",
+          "technologies": ["Bun", "Nuxt", "Docker"]
+        },
+        {
+          "id": "monitoring",
+          "title": "動態結構監測平台",
+          "year": "2021",
+          "description": "AIoT + 數據分析 + 資料視覺化\n\n即時建築物結構監測數據、報告及連線監控\n\n",
+          "fullDescription": "這是專案的詳細描述...",
+          "img": "/shmbanner.png",
+          "technologies": ["JavaScript", "Python", "Flask", "MQTT", "Docker"]
+        },
+        {
+          "title": "雲端預警交集平台",
+          "year": "2023",
+          "description": "即時雲端運算 + 現地型地震預警\n\n靈活的群組架構搭配交集系統運算\n\n提供海外即時地震預警",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/eewsbanner.png",
+          "technologies": ["JavaScript", "Golang", "Django", "MQTT", "Docker"]
+        },
+        {
+          "title": "靜態結構監測平台",
+          "year": "2024",
+          "description": "這是專案 2 的簡短描述。",
+          "fullDescription": "這是專案 2 的詳細描述，包含更多信息。",
+          "img": "/sshmbanner.png",
+          "technologies": ["React", "Express", "PostgreSQL"]
+        },
+        {
+          "title": "系統通知中心",
+          "description": "這是專案 1 的簡短描述。",
+          "fullDescription": "這是專案 1 的詳細描述，包含更多信息。",
+          "img": "/logo.png",
+          "technologies": ["Vue", "Node.js", "MongoDB"]
+        }
+      ]
+    }
+  }

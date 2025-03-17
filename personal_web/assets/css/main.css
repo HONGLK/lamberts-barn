@@ -1,0 +1,175 @@
+/* Google Material icons */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500;600;700&display=swap');
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,500,700,900&subset=chinese-traditional&display=swap');
+
+html, body, #__nuxt, #__layout {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0; 
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+:root {
+  /* 淺色主題 */
+  --light-bg-primary: #f0f4f8;
+  --light-bg-secondary: #ffffff;
+  --light-text-primary: #2d3748;
+  --light-text-secondary: #4a5568;
+  --light-accent: #3182ce;
+
+  /* Dark Theme Colors */
+
+  /* Primary Colors */
+  --primary-color: #fc9255; /* 鮮明的橘色，作為主要按鈕或強調色 */
+  --primary-variant: #3700b3; /* 較深的變種，作為主要色的深色版本 */
+  --secondary-color: #03dac6; /* 淺綠色，作為次要按鈕或連結的顏色 */
+
+  /* Background Colors */
+  --background-color: #121212; /* 全局背景顏色 */
+  --surface-color: #1e1e1e; /* 用於卡片、對話框等表面區域 */
+  --dark-bg-primary: #121212; /* 主背景顏色 */
+  --dark-bg-secondary: #1e1e1e; /* 次背景顏色 */
+
+  /* Text Colors */
+  --on-primary-color: #000000; /* 主色上的文字顏色，通常是黑色 */
+  --on-secondary-color: #000000; /* 次色上的文字顏色 */
+  --on-background-color: #ffffff; /* 背景上的文字顏色 */
+  --on-surface-color: #ffffff; /* 表面上的文字顏色 */
+  --dark-text-primary: #f7fafc; /* 主要文字顏色 */
+  --dark-text-secondary: #e2e8f0; /* 次要文字顏色 */
+  --accent: #63b3ed; /* 藍色作為強調色 */
+
+  /* Error Colors */
+  --error-color: #cf6679; /* 錯誤信息的顏色 */
+  --on-error-color: #000000; /* 錯誤提示中的文字顏色 */
+
+  /* Other Colors */
+  --divider-color: rgba(255, 255, 255, 0.12); /* 分割線的顏色，透明度較低 */
+  --disabled-color: rgba(255, 255, 255, 0.38); /* 禁用狀態的顏色 */
+  --hint-color: rgba(255, 255, 255, 0.38); /* 提示文字的顏色 */
+  --icon-color: rgba(255, 255, 255, 0.87); /* 圖標顏色，較高的透明度 */
+  --hover-overlay: rgba(255, 255, 255, 0.08); /* 滑過的背景覆蓋層 */
+
+  /* 默認使用深色主題 */
+  --bg-primary: var(--dark-bg-primary);
+  --bg-secondary: var(--dark-bg-secondary);
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --accent: var(--accent);
+}
+
+/* Example CSS using the variables */
+body {
+  background-color: var(--background-color);
+  color: var(--on-background-color);
+  font-family: 'NOTO Sans TC';
+  
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.page-title {
+  color: var(--primary-color);
+  /* letter-spacing: 1rem; */
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-variant);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.card {
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.disabled {
+  color: var(--disabled-color);
+}
+
+.header, .footer {
+  /* background-color: var(--surface-color); */
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2rem;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.scrollable {
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+h2, h3 {
+  color: var(--primary-color)
+}
+
+/* 可選：為觸摸設備添加滾動慣性 */
+@media (pointer: fine) {
+  .scrollable {
+    overflow-y: overlay;
+  }
+}
