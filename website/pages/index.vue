@@ -43,6 +43,7 @@ import TimelineSection from '~/components/TimelineSection.vue'
 import ProjectsSection from '~/components/ProjectsSection.vue'
 import { useI18n } from '#imports';
 import { useScrollManager } from '~/composables/useScrollManager';
+import { zhProjects, enProjects } from '~/data/projects';
 
 const { disableScrolling, enableScrolling } = useScrollManager();
 const { t, tm, locale } = useI18n();
@@ -60,19 +61,7 @@ const skills = [
 ]
 
 const projects = computed(() => {
-  const rawProjects = tm('project.items') || [];
-  
-  return rawProjects.map(project => ({
-    id: project.id?.body?.static || '',
-    title: project.title?.body?.static || '',
-    year: project.year?.body?.static || '',
-    description: project.description?.body?.static || '',
-    fullDescription: project.fullDescription?.body?.static || '',
-    img: project.img?.body?.static || '',
-    technologies: Array.isArray(project.technologies) 
-      ? project.technologies.map(tech => tech?.body?.static || '') 
-      : []
-  }));
+  return locale.value === 'zh-TW' ? zhProjects : enProjects;
 });
 
 const sections = ref([]);

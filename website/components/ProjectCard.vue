@@ -36,7 +36,7 @@ const props = defineProps({
   },
 });
 
-// console.log('ProjectCard received project:', props.project);
+console.log('ProjectCard received project:', props.project);
 const showDetails = ref(false);
 
 const toggleDetails = () => {
