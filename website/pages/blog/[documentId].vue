@@ -64,7 +64,6 @@ const renderedMarkdown = ref("");
 const articleId = route.params.documentId;
 const strapiUrl = useRuntimeConfig().public.strapi.url;
 
-// 初始化 markdown-it，確保 Markdown 渲染正確
 const md = new MarkdownIt({
   html: true,
   linkify: true,
@@ -104,7 +103,7 @@ const md = new MarkdownIt({
   }
 });
 
-// 安全配置，允許圖片和表格等標籤
+// 安全配置
 const sanitizeOptions = {
   allowedTags: sanitizeHtml.defaults.allowedTags.concat([
     'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'code', 
@@ -221,7 +220,6 @@ onMounted(() => {
   font-size: 0.9rem;
 }
 
-/* Medium 風格內文 */
 .article-content {
   line-height: 1.8;
   color: var(--text-primary, #333333);
@@ -229,7 +227,6 @@ onMounted(() => {
   padding-bottom: 2rem;
 }
 
-/* 標題樣式 */
 .article-content h1,
 .article-content h2,
 .article-content h3,
@@ -303,7 +300,7 @@ onMounted(() => {
   line-height: 1.6;
 }
 
-/* 內聯程式碼 */
+/* 程式碼 */
 .article-content code {
   font-family: 'Fira Code', 'Consolas', monospace;
   background-color: rgba(0, 0, 0, 0.05);

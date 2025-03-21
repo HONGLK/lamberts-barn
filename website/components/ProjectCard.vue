@@ -36,7 +36,7 @@ const props = defineProps({
   },
 });
 
-console.log('ProjectCard received project:', props.project);
+// console.log('ProjectCard received project:', props.project);
 const showDetails = ref(false);
 
 const toggleDetails = () => {
@@ -94,16 +94,19 @@ const getTechIcon = (tech) => {
 </script>
 <style scoped>
 .project-card {
-  /* 使用相對單位替代固定像素 */
   width: 100%;
   max-width: 300px;
-  aspect-ratio: 3/4; /* 維持 300x400 的比例 */
+  aspect-ratio: 3/4.2;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 0 0 auto;
-  margin-right: clamp(10px, 2vw, 20px); /* 響應式邊距 */
+  padding: 4px;
+  margin-right: clamp(10px, 2vw, 20px); /* 浮動邊距 */
 }
 
 .project-card:last-child {
@@ -117,7 +120,7 @@ const getTechIcon = (tech) => {
 .project-image-container {
   position: relative;
   height: 40%;
-  min-height: 120px; /* 確保小螢幕有最小高度 */
+  min-height: 100px;
 }
 
 .project-image {
@@ -136,24 +139,24 @@ const getTechIcon = (tech) => {
   color: #fff;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: clamp(10px, 1vw, 12px); /* 響應式字體大小 */
+  font-size: clamp(10px, 1vw, 12px); /* 自動調整字體大小 */
 }
 
 h3 {
   letter-spacing: 2px;
   margin: 10px;
-  font-size: clamp(14px, 1.5vw, 18px); /* 響應式標題大小 */
+  font-size: clamp(14px, 1.5vw, 18px);
 }
 
 .project-info {
   height: 30%;
   overflow-y: auto;
-  min-height: 80px; /* 確保小螢幕有最小高度 */
+  min-height: 80px;
 }
 
 .description {
   margin: 0 10px;
-  font-size: clamp(12px, 1vw, 14px); /* 響應式字體大小 */
+  font-size: clamp(12px, 1vw, 14px);
   white-space: break-spaces;
 }
 
@@ -162,7 +165,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   margin: 10px;
-  min-height: 40px; /* 確保小螢幕有最小高度 */
+  min-height: 40px;
 }
 
 .project-details {
@@ -171,7 +174,7 @@ h3 {
 }
 
 .tech-icon {
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* 響應式圖標大小 */
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   margin: 5px;
 }
 
@@ -179,16 +182,15 @@ h3 {
   color: #00c641;
 }
 
-/* 媒體查詢：適應不同螢幕尺寸 */
 @media (max-width: 480px) {
   .project-card {
-    max-width: 85vw; /* 小螢幕上幾乎滿寬 */
+    max-width: 85vw;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .project-card {
-    max-width: 250px; /* 中等螢幕稍微縮小 */
+    max-width: 250px;
   }
   .tech-icons {
     margin: 4px;
@@ -197,13 +199,13 @@ h3 {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .project-card {
-    max-width: 280px; /* 大螢幕接近原尺寸 */
+    max-width: 280px;
   }
 }
 
 @media (min-width: 1025px) {
   .project-card {
-    max-width: 300px; /* 超大螢幕保持原尺寸 */
+    max-width: 300px;
   }
 }
 </style>

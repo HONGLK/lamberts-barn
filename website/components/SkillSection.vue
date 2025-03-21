@@ -12,12 +12,12 @@
 </template>
   
 <script setup>
-  defineProps({
-    skills: {
-      type: Array,
-      required: true
-    }
-  })
+defineProps({
+  skills: {
+    type: Array,
+    required: true
+  }
+})
 </script>
   
 <style scoped>

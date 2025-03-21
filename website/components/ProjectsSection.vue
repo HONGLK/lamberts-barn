@@ -1,8 +1,6 @@
 <template>
   <div class="fullpage-section projects-section">
     <h1 class="page-title">{{ $t('projects') }}</h1>
-    
-    <!-- 小螢幕輪播模式 -->
     <div v-if="isSmallScreen" class="projects-carousel">
       <div class="carousel-navigation">
         <button class="nav-button prev" @click="prevCard" aria-label="上一個專案">
@@ -159,14 +157,14 @@ const resumeCarousel = () => {
 const calculateOriginalWidth = () => {
   if (!projectsWrapper.value) return 0;
   
-  // 獲取所有原始卡片 (不包括複製的)
+  // 取得所有原始卡片 (不包括複製的)
   const originalCards = Array.from(projectsWrapper.value.children).slice(0, props.projects.length);
   if (originalCards.length === 0) return 0;
   
-  // 手動計算總寬度 (卡片寬度 + 外邊距 + 間距)
+  // 計算總寬度 (卡片寬度 + 外邊距 + 間距)
   let totalWidth = 0;
   
-  // 獲取間隔寬度
+  // 取得間隔寬度
   const gap = parseInt(window.getComputedStyle(projectsWrapper.value).gap) || 20;
   
   // 計算每個卡片的總寬度 (包含間隔)
@@ -190,19 +188,15 @@ const calculateOriginalWidth = () => {
 // 複製卡片以實現無縫捲動
 const setupInfiniteScroll = async () => {
   if (!projectsWrapper.value || clonedCardsAdded || isSmallScreen.value) return;
-  
-  // 等待原始卡片渲染完成
+
   await nextTick();
   
-  // 獲取所有原始卡片
   const originalCards = Array.from(projectsWrapper.value.querySelectorAll('.project-card')).slice(0, props.projects.length);
   
   if (originalCards.length === 0) return;
   
-  // 計算原始卡片的總寬度
   originalCardsWidth = calculateOriginalWidth();
   
-  // 複製所有卡片
   originalCards.forEach((card, index) => {
     const clone = card.cloneNode(true);
     // 新增唯一key避免Vue警告
@@ -236,10 +230,8 @@ const autoScroll = (timestamp) => {
   lastTimestamp = timestamp;
   
   if (!isPaused && !isDragging && projectsContainer.value && !isResetting && originalCardsWidth > 0) {
-    // 使用deltaTime確保滾動速度一致，無論幀率如何
     projectsContainer.value.scrollLeft += SCROLL_SPEED * deltaTime;
     
-    // 檢測是否需要重置捲動位置
     checkScrollPosition();
   }
   
@@ -249,15 +241,11 @@ const autoScroll = (timestamp) => {
 const checkScrollPosition = () => {
   if (!projectsContainer.value || originalCardsWidth <= 0) return;
   
-  // 當scrollLeft達到或超過原始卡片總寬度時重置
   if (projectsContainer.value.scrollLeft >= originalCardsWidth) {
-    // 防止重置過程中的抖動
     isResetting = true;
     
-    // 直接重置到開始位置，無需計算偏移
     projectsContainer.value.scrollLeft = 0;
     
-    // 允許捲動繼續
     setTimeout(() => {
       isResetting = false;
     }, 20);
@@ -399,7 +387,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
 }
 
-/* 大螢幕無縫捲動樣式 */
+/* 大螢幕無縫捲動 */
 .projects {
   width: 95%;
   height: 100%;
@@ -430,7 +418,7 @@ onBeforeUnmount(() => {
   display: none;
 }
 
-/* 小螢幕輪播樣式 */
+/* 小螢幕輪播 */
 .projects-carousel {
   width: 95%;
   height: 100%;
@@ -495,7 +483,7 @@ onBeforeUnmount(() => {
   background-color: #333;
 }
 
-/* 輪播卡片樣式 */
+/* 輪播卡片 */
 .projects-carousel .project-card {
   position: absolute;
   width: 90%;
@@ -513,7 +501,6 @@ onBeforeUnmount(() => {
 }
 
 @media (min-width: 768px) {
-  /* 若需調整大螢幕下的佈局 */
   .project-card {
     margin-right: 0;
   }

@@ -84,11 +84,10 @@ const fetchArticles = async () => {
     loading.value = true;
     const response = await fetch(`${API_BASE_URL}/api/articles?populate=*`);
     const { data } = await response.json();
-    
-    // 直接使用 API 回應格式
-    articles.value = data;
-    
+
+    articles.value = data;    
     loading.value = false;
+    
   } catch (err) {
     error.value = '無法載入文章，請稍後再試';
     loading.value = false;
@@ -101,8 +100,8 @@ const fetchCategories = async () => {
     const response = await fetch(`${API_BASE_URL}/api/categories`);
     const { data } = await response.json();
     
-    // 直接使用 API 回應格式
     categories.value = data;
+
   } catch (err) {
     console.error('Error fetching categories:', err);
   }

@@ -34,22 +34,22 @@ const switchLanguage = (localeCode) => {
 }
 
 .lang-btn {
-    background-color: var(--surface-color);
-    color: var(--on-surface-color);
-    border: none;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .lang-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--on-primary-color);
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
 }
 
 .lang-btn.active {
-    background-color: var(--primary-color);
-    color: var(--on-primary-color);
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
 }
 </style>

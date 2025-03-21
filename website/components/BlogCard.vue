@@ -198,7 +198,6 @@ const formatDate = (dateString) => {
   transform: translateX(3px);
 }
 
-/* RWD 設計 */
 @media (max-width: 768px) {
   .card-image-container {
     height: 180px;
