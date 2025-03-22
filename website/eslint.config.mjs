@@ -9,9 +9,19 @@ import tsParser from "@typescript-eslint/parser";
 import vueParser from "vue-eslint-parser";
 
 export default defineConfig([
+  {
+    ignores: [
+      ".nuxt/**",
+      "node_modules/**",
+      "dist/**",
+      ".output/**",
+      ".github/**"
+    ],
+  },
   // 基本配置
   js.configs.recommended,
   {
+
     files: ["**/*.{js,mjs,cjs,jsx,ts,tsx,vue}"],
     languageOptions: {
       globals: {
@@ -68,12 +78,15 @@ export default defineConfig([
         math: "always"
       }],
       "vue/multi-word-component-names": ["error", {
-        ignores: ["main", "index", "report", "settings", "default", "Navbar", "Recaptcha2"]
+        ignores: [
+          "main", "index", "report", "settings", "default", "Navbar", "Recaptcha2",
+          "about", "contact", "home", "login", "register", "error", // 添加你的 Nuxt 頁面名稱
+          "[...slug]", "[slug]" // 動態路由
+        ]
       }],
       "indent": ["error", 2], // 使用 2 空格縮排
       "vue/html-indent": ["error", 2], // Vue 模板使用 2 空格縮排
       "vue/script-indent": ["error", 2], // Vue script 部分使用 2 空格縮排
-      "vue/style-indent": ["error", 2] // Vue style 使用 2 空格縮排
     }
   },
   

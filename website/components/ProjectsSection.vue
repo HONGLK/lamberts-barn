@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick} from 'vue';
 import { useScrollManager } from '~/composables/useScrollManager';
 
 useHead({
