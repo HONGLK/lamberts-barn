@@ -63,7 +63,7 @@ import { useScrollManager } from '~/composables/useScrollManager';
 
 useHead({
   title: 'Barn'
-})
+});
 const props = defineProps({
   projects: {
     type: Array,

@@ -91,7 +91,7 @@ const fetchArticles = async () => {
   } catch (err) {
     error.value = '無法載入文章，請稍後再試';
     loading.value = false;
-    console.error('Error fetching articles:', err);
+    // console.error('Error fetching articles:', err);
   }
 };
 
@@ -99,17 +99,17 @@ const fetchCategories = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/categories`);
     const { data } = await response.json();
-    
+
     categories.value = data;
 
   } catch (err) {
-    console.error('Error fetching categories:', err);
+    // console.error('Error fetching categories:', err);
   }
 };
 
 // 篩選文章
 const filteredArticles = computed(() => {
-  console.log(filteredArticles)
+  // console.log(filteredArticles);
   let result = articles.value;
 
   // 搜尋篩選
@@ -142,7 +142,7 @@ const totalPages = computed(() => {
     if (searchQuery.value) {
       const query = searchQuery.value.toLowerCase();
       if (!article.attributes.title.toLowerCase().includes(query) && 
-          !article.attributes.description.toLowerCase().includes(query)) {
+        !article.attributes.description.toLowerCase().includes(query)) {
         return false;
       }
     }
@@ -150,8 +150,8 @@ const totalPages = computed(() => {
     // 分類篩選
     if (selectedCategory.value) {
       if (!article.attributes.category || 
-          !article.attributes.category.data || 
-          article.attributes.category.data.id !== parseInt(selectedCategory.value)) {
+        !article.attributes.category.data || 
+        article.attributes.category.data.id !== parseInt(selectedCategory.value)) {
         return false;
       }
     }
@@ -175,7 +175,7 @@ onMounted(() => {
 
 <style scoped>
 .blog-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }

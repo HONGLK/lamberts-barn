@@ -34,16 +34,16 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import IntroSection from '~/components/IntroSection.vue'
-import ProjectsSection from '~/components/ProjectsSection.vue'
-import { useI18n } from '#imports'
-import { zhProjects, enProjects } from '~/data/projects'
-import { zhTags, enTags } from '~/data/tags'
+import { ref, computed } from 'vue';
+import IntroSection from '~/components/IntroSection.vue';
+import ProjectsSection from '~/components/ProjectsSection.vue';
+import { useI18n } from '#imports';
+import { zhProjects, enProjects } from '~/data/projects';
+import { zhTags, enTags } from '~/data/tags';
 
 // 資料設定
-const fullText = "您好！\n\n歡迎來到我的個人網站"
-const fullDescription = "我是 Lambert，一名對IoT技術、人工智慧熱忱且將其融入生活的全端工程師\n誠如我的個人Logo，結合藍色與橘色，藍色代表科技，橘色代表熱忱。\nLambert's Barn 一點一點累積了這一路上的汗水、歡笑與坑洞，成為現在的我。"
+const fullText = "您好！\n\n歡迎來到我的個人網站";
+const fullDescription = "我是 Lambert，一名對IoT技術、人工智慧熱忱且將其融入生活的全端工程師\n誠如我的個人Logo，結合藍色與橘色，藍色代表科技，橘色代表熱忱。\nLambert's Barn 一點一點累積了這一路上的汗水、歡笑與坑洞，成為現在的我。";
 // const tags = [
 //   'Lambert',
 //   '台灣',
@@ -58,84 +58,84 @@ const fullDescription = "我是 Lambert，一名對IoT技術、人工智慧熱�
 //   '知識分享者'
 // ]
 
-const { locale } = useI18n()
+const { locale } = useI18n();
 const projects = computed(() =>
   locale.value === 'zh-TW' ? zhProjects : enProjects
-)
+);
 const tags = computed(() => 
   locale.value === 'zh-TW' ? zhTags : enTags
-)
+);
 
 // 區塊控制
-const currentSection = ref(0)
-const sectionsCount = 2 // 需手動根據實際 section 數量更新
+const currentSection = ref(0);
+const sectionsCount = 2; // 需手動根據實際 section 數量更新
 
 // 防止多次觸發過渡效果
-let isTransitioning = false
-const transitionDuration = 600 // 單位：ms，與 CSS transition 時間一致
+let isTransitioning = false;
+const transitionDuration = 600; // 單位：ms，與 CSS transition 時間一致
 
 // 滾輪事件處理
 const handleWheel = (e) => {
-  if (isTransitioning) return
-  const delta = e.deltaY
+  if (isTransitioning) return;
+  const delta = e.deltaY;
   if (delta > 0) {
-    nextSection()
+    nextSection();
   } else if (delta < 0) {
-    prevSection()
+    prevSection();
   }
-}
+};
 
 // 移動到下一區塊
 const nextSection = () => {
   if (currentSection.value < sectionsCount - 1) {
-    changeSection(currentSection.value + 1)
+    changeSection(currentSection.value + 1);
   }
-}
+};
 
 // 移動到上一區塊
 const prevSection = () => {
   if (currentSection.value > 0) {
-    changeSection(currentSection.value - 1)
+    changeSection(currentSection.value - 1);
   }
-}
+};
 
 // 統一處理區塊切換，並設置過渡鎖定
 const changeSection = (newIndex) => {
-  isTransitioning = true
-  currentSection.value = newIndex
+  isTransitioning = true;
+  currentSection.value = newIndex;
   setTimeout(() => {
-    isTransitioning = false
-  }, transitionDuration)
-}
+    isTransitioning = false;
+  }, transitionDuration);
+};
 
 // 點擊指示器切換
 const goToSection = (index) => {
   if (!isTransitioning && index !== currentSection.value) {
-    changeSection(index)
+    changeSection(index);
   }
-}
+};
 
 // 觸控事件處理
-let touchStartY = 0
+let touchStartY = 0;
 const handleTouchStart = (e) => {
-  touchStartY = e.touches[0].clientY
-}
+  touchStartY = e.touches[0].clientY;
+};
 const handleTouchEnd = (e) => {
-  const touchEndY = e.changedTouches[0].clientY
-  const diff = touchStartY - touchEndY
-  if (Math.abs(diff) < 50) return // 忽略過短的滑動
-  diff > 0 ? nextSection() : prevSection()
-}
+  const touchEndY = e.changedTouches[0].clientY;
+  const diff = touchStartY - touchEndY;
+  if (Math.abs(diff) < 50) return; // 忽略過短的滑動
+  diff > 0 ? nextSection() : prevSection();
+};
 
 // 鍵盤事件處理
 const handleKeyDown = (e) => {
-  if (isTransitioning) return
+  if (isTransitioning) return;
   if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-    nextSection()
+    nextSection();
   } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-    prevSection()
+    prevSection();
   }
-}
+};
 </script>
 
 <style scoped>

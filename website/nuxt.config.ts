@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   css:['/assets/css/main.css'],
   plugins: ['~/plugins/fontawesome.js'],
   modules: [
+    '@nuxtjs/eslint-module',
     '@nuxtjs/i18n',
     '@nuxtjs/strapi',
   ],
@@ -42,5 +43,8 @@ export default defineNuxtConfig({
     version: 'v4',
     cookie: {},
     cookieName: 'strapi_jwt'
+  },
+  eslint: {
+    fix: true
   }
-})
+});

@@ -1,7 +1,7 @@
 <template>
   <div class="project-card" @click="toggleDetails">
     <div class="project-image-container">
-      <img :src="project.img" :alt="project.title" class="project-image">
+      <img :src="project.img" :alt="project.title" class="project-image"/>
       <span v-if="project.year" class="image-year">{{ project.year }}</span>
     </div>
     <div class="project-title">

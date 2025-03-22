@@ -1,27 +1,27 @@
 <template>
-    <section class="latest-posts">
-      <div class="section-header">
-        <h2 class="section-title">{{ $t('latest_posts') }}</h2>
-        <NuxtLink :to="localePath('/blog')" class="view-all">
-          {{ $t('all_posts') }}
-          <font-awesome-icon :icon="['fas', 'arrow-right']" />
-        </NuxtLink>
-      </div>
+  <section class="latest-posts">
+    <div class="section-header">
+      <h2 class="section-title">{{ $t('latest_posts') }}</h2>
+      <NuxtLink :to="localePath('/blog')" class="view-all">
+        {{ $t('all_posts') }}
+        <font-awesome-icon :icon="['fas', 'arrow-right']" />
+      </NuxtLink>
+    </div>
       
-      <div v-if="loading" class="loading-spinner">
-        <font-awesome-icon :icon="['fas', 'spinner']" spin />
-      </div>
+    <div v-if="loading" class="loading-spinner">
+      <font-awesome-icon :icon="['fas', 'spinner']" spin />
+    </div>
       
-      <div v-else-if="error" class="error-message">
-        <p>{{ error }}</p>
-      </div>
+    <div v-else-if="error" class="error-message">
+      <p>{{ error }}</p>
+    </div>
       
-      <div v-else-if="latestPosts.length === 0" class="no-posts">
-        <p>暫無文章</p>
-      </div>
+    <div v-else-if="latestPosts.length === 0" class="no-posts">
+      <p>暫無文章</p>
+    </div>
       
-      <div v-else class="posts-grid">
-        <BlogCard 
+    <div v-else class="posts-grid">
+      <BlogCard 
         v-for="post in latestPosts" 
         :key="post.id" 
         :article="post" 
@@ -31,18 +31,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue';
 
-const { t } = useI18n()
-const localePath = useLocalePath()
+const { t } = useI18n();
+const localePath = useLocalePath();
 
-const latestPosts = ref([])
-const loading = ref(true)
-const error = ref(null)
+const latestPosts = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
 const fetchLatestPosts = async () => {
   try {
-    loading.value = true
+    loading.value = true;
     const { data } = await useStrapiClient().find('articles', {
       populate: ['image', 'category'],
       sort: ['publishedAt:desc'],
@@ -50,19 +50,19 @@ const fetchLatestPosts = async () => {
         page: 1,
         pageSize: 3
       }
-    })
-    latestPosts.value = data
-    loading.value = false
+    });
+    latestPosts.value = data;
+    loading.value = false;
   } catch (err) {
-    error.value = '無法載入最新文章'
-    loading.value = false
-    console.error('Error fetching latest posts:', err)
+    error.value = '無法載入最新文章';
+    loading.value = false;
+    console.error('Error fetching latest posts:', err);
   }
-}
+};
 
 onMounted(() => {
-  fetchLatestPosts()
-})
+  fetchLatestPosts();
+});
 </script>
 
 <style scoped>

@@ -2,8 +2,8 @@
   <section class="fullpage-section skills">
     <div class="content">
       <h2>專長領域</h2>
-        <ul>
-          <li v-for="(skill, index) in skills" :key="index">
+      <ul>
+        <li v-for="(skill, index) in skills" :key="index">
           <span class="material-symbols-outlined">{{ skill.icon }}</span> {{ skill.name }}
         </li>
       </ul>
@@ -17,7 +17,7 @@ defineProps({
     type: Array,
     required: true
   }
-})
+});
 </script>
   
 <style scoped>

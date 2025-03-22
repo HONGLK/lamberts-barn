@@ -12,15 +12,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import FloatingTags from './FloatingTags.vue'
+import { ref, onMounted } from 'vue';
+import FloatingTags from './FloatingTags.vue';
 import ScrollIndicator from './ScrollIndicator.vue';
 
 const { t } = useI18n();
 
 useHead({
   title: 'Barn'
-})
+});
 
 const props = defineProps({
   tags: {
@@ -31,25 +31,25 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
-})
+});
 
 const fullText = t('welcome');
 const fullDescription = t('intro_description');
 
-const typedText = ref('')
-const typedDescription = ref('')
+const typedText = ref('');
+const typedDescription = ref('');
 
 const typeText = async (text, target, delay = 100) => {
   for (let i = 0; i <= text.length; i++) {
-    target.value = text.slice(0, i)
-    await new Promise(resolve => setTimeout(resolve, delay))
+    target.value = text.slice(0, i);
+    await new Promise(resolve => setTimeout(resolve, delay));
   }
-}
+};
 
 onMounted(async () => {
-  await typeText(fullText, typedText, 50)
-  await typeText(fullDescription, typedDescription, 30)
-})
+  await typeText(fullText, typedText, 50);
+  await typeText(fullDescription, typedDescription, 30);
+});
 </script>
 
 <style scoped>

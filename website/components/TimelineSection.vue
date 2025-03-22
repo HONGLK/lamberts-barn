@@ -16,7 +16,7 @@
 </template>
   
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const timelineEvents = ref([
   {
@@ -39,14 +39,14 @@ const timelineEvents = ref([
     title: '大學畢業',
     description: '獲得資訊工程學士學位，開始了解 AI 和 IoT 技術。'
   }
-])
+]);
 
 const props = defineProps({
   isLastSection: {
     type: Boolean,
     default: false
   }
-})
+});
 </script>
 
 <style scoped>
