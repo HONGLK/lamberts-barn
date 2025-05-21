@@ -38,6 +38,10 @@ COPY . .
 # 構建 Strapi 應用
 RUN yarn build
 
+# 檢查構建後的文件結構（調試用）
+RUN ls -la && \
+    find . -name "build" -type d -o -name "dist" -type d -o -name ".build" -type d
+
 # ================================
 # 第二階段：運行階段
 # ================================
@@ -60,7 +64,9 @@ WORKDIR /opt/app
 COPY --from=build /opt/app/node_modules ./node_modules
 COPY --from=build /opt/app/package.json ./
 COPY --from=build /opt/app/yarn.lock ./
-COPY --from=build /opt/app/build ./build
+# 複製 Strapi 相關目錄 (根據 Strapi 結構修改)
+COPY --from=build /opt/app/dist ./dist
+COPY --from=build /opt/app/.cache ./.cache
 COPY --from=build /opt/app/public ./public
 COPY --from=build /opt/app/config ./config
 COPY --from=build /opt/app/src ./src
