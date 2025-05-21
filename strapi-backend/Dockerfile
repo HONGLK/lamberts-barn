@@ -1,43 +1,32 @@
-# 使用 Node.js 18 Alpine 作為基礎映像
-FROM node:18-alpine
-
-# 安裝系統依賴
-RUN apk update && apk add --no-cache \
-    build-base \
-    gcc \
-    autoconf \
-    automake \
-    zlib-dev \
-    libpng-dev \
-    nasm \
-    bash \
-    vips-dev \
-    git \
-    postgresql-client
-
-# 設定工作目錄
+# 構建階段
+FROM node:18-alpine AS build
 WORKDIR /opt/app
 
-# 設定環境變量
-ENV NODE_ENV=production
+# 增加構建階段的記憶體限制
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-# 複製 package 管理文件
 COPY package*.json yarn.lock* ./
-
-# 安裝全局和項目依賴
 RUN yarn global add node-gyp && \
     yarn config set network-timeout 600000 -g && \
-    yarn install --frozen-lockfile && \
-    yarn add pg
+    yarn install --frozen-lockfile
 
-# 複製應用程式文件
 COPY . .
-
-# 構建 Strapi 應用
 RUN yarn build
 
-# 暴露 Strapi 端口
-EXPOSE 1337
+# 運行階段 (更輕量)
+FROM node:18-alpine
+WORKDIR /opt/app
 
-# 設定啟動命令
+# 運行時的記憶體限制可以低一些
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+ENV NODE_ENV=production
+
+COPY --from=build /opt/app/node_modules ./node_modules
+COPY --from=build /opt/app/package.json ./
+COPY --from=build /opt/app/yarn.lock ./
+COPY --from=build /opt/app/build ./build
+COPY --from=build /opt/app/public ./public
+COPY --from=build /opt/app/config ./config
+COPY --from=build /opt/app/src ./src
+
 CMD ["yarn", "start"]
