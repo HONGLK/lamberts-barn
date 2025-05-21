@@ -1,6 +1,8 @@
 # 使用 Node.js 18 Alpine 作為基礎映像
 FROM node:18-alpine
 
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # 安裝系統依賴
 RUN apk update && apk add --no-cache \
     build-base \
