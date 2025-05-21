@@ -6,7 +6,7 @@
         :src="featuredImage" 
         :alt="article.Title" 
         class="card-image"
-      >
+      />
       <div v-else class="placeholder-image">
         <span class="material-symbols-outlined">image</span>
       </div>
@@ -35,42 +35,41 @@
 </template>
 
 <script setup>
-const { t } = useI18n()
-const localePath = useLocalePath()
+const localePath = useLocalePath();
 
 const props = defineProps({
   article: {
     type: Object,
     required: true
   }
-})
+});
 
 // 取得文章封面圖片
 const featuredImage = computed(() => {
   if (props.article.Image) {
-    const baseUrl = useRuntimeConfig().public.strapi.url || 'http://localhost:1337'
-    return `${baseUrl}${props.article.Image.url}`
+    const baseUrl = useRuntimeConfig().public.strapi.url || 'http://localhost:1337';
+    return `${baseUrl}${props.article.Image.url}`;
   }
-  return null
-})
+  return null;
+});
 
 // 取得文章分類
 const category = computed(() => {
   if (props.article.category) {
-    return props.article.category.Name
+    return props.article.category.Name;
   }
-  return null
-})
+  return null;
+});
   
 // 格式化日期
 const formatDate = (dateString) => {
-  const date = new Date(dateString)
+  const date = new Date(dateString);
   return new Intl.DateTimeFormat(useI18n().locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  }).format(date)
-}
+  }).format(date);
+};
 </script>
 
 <style scoped>
@@ -198,7 +197,6 @@ const formatDate = (dateString) => {
   transform: translateX(3px);
 }
 
-/* RWD 設計 */
 @media (max-width: 768px) {
   .card-image-container {
     height: 180px;

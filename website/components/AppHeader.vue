@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <nav class="nav">
-      <img src="/logo.png" alt="Logo" class="logo">
+      <img src="/logo.png" alt="Logo" class="logo"/>
       <div class="nav-center">
         <ul class="menu-list">
           <li>

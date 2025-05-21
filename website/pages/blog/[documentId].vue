@@ -64,47 +64,46 @@ const renderedMarkdown = ref("");
 const articleId = route.params.documentId;
 const strapiUrl = useRuntimeConfig().public.strapi.url;
 
-// 初始化 markdown-it，確保 Markdown 渲染正確
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight: function (str, lang) {
+  highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return `<pre class="hljs language-${lang}"><code class="language-${lang}">${
           hljs.highlight(str, { language: lang }).value
         }</code></pre>`;
       } catch (err) {
-        console.error("Highlight error:", err);
+        // console.error("Highlight error:", err);
       }
     }
     return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
   }
 })
-.use(MarkdownItAnchor, {
-  permalink: MarkdownItAnchor.permalink.linkInsideHeader({
-    symbol: `<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  .use(MarkdownItAnchor, {
+    permalink: MarkdownItAnchor.permalink.linkInsideHeader({
+      symbol: `<svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0545407 15.017C-0.226368 16.3169 0.605513 17.5997 1.9126 17.8821C1.93375 17.8867 1.95489 17.891 1.97602 17.895C2.08941 17.9299 2.20705 17.9483 2.32767 17.9483H11.4611C12.3859 17.9483 13.1356 16.8667 13.1356 15.5324C13.1356 14.1981 12.3859 13.1164 11.4611 13.1164H5.41965L7.56226 3.20134C7.84317 1.90142 7.01129 0.618646 5.7042 0.33619C4.39712 0.0537336 3.10979 0.878556 2.82888 2.17848L0.0545407 15.017ZM4.06845 13.1164L6.27134 2.92238C6.39903 2.33151 6.0209 1.74843 5.42677 1.62004C4.83264 1.49165 4.24749 1.86657 4.11981 2.45744L1.78882 13.2443C1.95792 13.1614 2.13916 13.1164 2.32767 13.1164H2.49204L4.76527 2.59692C4.81634 2.36057 5.0504 2.21061 5.28805 2.26196C5.5257 2.31332 5.67695 2.54655 5.62588 2.7829L3.39284 13.1164H4.06845ZM3.10808 14.4342H3.78368L3.64129 15.0931H2.96569L3.10808 14.4342ZM2.20417 14.4486C1.84255 14.5337 1.56655 14.9866 1.56655 15.5324C1.56655 16.0062 1.77455 16.41 2.066 16.5639C2.10617 16.5776 2.14755 16.5891 2.19003 16.5983C2.70994 16.7106 3.22297 16.4376 3.4286 15.9716H2.32767C2.24019 15.9716 2.16133 15.9184 2.10579 15.8332C2.0067 15.7315 1.9588 15.584 1.99092 15.4354L2.20417 14.4486ZM4.57685 16.6305C4.67074 16.4478 4.74249 16.25 4.78792 16.0398L4.80265 15.9716H11.4611C11.6293 15.9716 11.7656 15.775 11.7656 15.5324C11.7656 15.2898 11.6293 15.0931 11.4611 15.0931H4.9925L5.13488 14.4342H11.4611C11.8815 14.4342 12.2222 14.9259 12.2222 15.5324C12.2222 16.1389 11.8815 16.6305 11.4611 16.6305H4.57685Z" fill="currentColor"/>
 </svg>
 `,
-    class: 'header-anchor',
-    renderAttrs: (slug) => ({ 'aria-label': `連結到 "${slug}"` })
+      class: 'header-anchor',
+      renderAttrs: (slug) => ({ 'aria-label': `連結到 "${slug}"` })
+    })
   })
-})
-.use(MarkdownItReplaceLink, {
-  replaceLink: function(link) {
-    // 處理圖片路徑
-    if (link && !link.startsWith('http') && !link.startsWith('https') && !link.startsWith('/')) {
-      return `${strapiUrl}/${link}`;
-    } else if (link && link.startsWith('/')) {
-      return `${strapiUrl}${link}`;
+  .use(MarkdownItReplaceLink, {
+    replaceLink: function(link) {
+      // 處理圖片路徑
+      if (link && !link.startsWith('http') && !link.startsWith('https') && !link.startsWith('/')) {
+        return `${strapiUrl}/${link}`;
+      } else if (link && link.startsWith('/')) {
+        return `${strapiUrl}${link}`;
+      }
+      return link;
     }
-    return link;
-  }
-});
+  });
 
-// 安全配置，允許圖片和表格等標籤
+// 安全配置
 const sanitizeOptions = {
   allowedTags: sanitizeHtml.defaults.allowedTags.concat([
     'img', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'code', 
@@ -153,7 +152,7 @@ const fetchArticle = async () => {
   } catch (err) {
     error.value = "無法載入文章，請稍後再試";
     loading.value = false;
-    console.error("Error fetching article:", err);
+    // console.error("Error fetching article:", err);
   }
 };
 
@@ -221,7 +220,6 @@ onMounted(() => {
   font-size: 0.9rem;
 }
 
-/* Medium 風格內文 */
 .article-content {
   line-height: 1.8;
   color: var(--text-primary, #333333);
@@ -229,7 +227,6 @@ onMounted(() => {
   padding-bottom: 2rem;
 }
 
-/* 標題樣式 */
 .article-content h1,
 .article-content h2,
 .article-content h3,
@@ -303,7 +300,7 @@ onMounted(() => {
   line-height: 1.6;
 }
 
-/* 內聯程式碼 */
+/* 程式碼 */
 .article-content code {
   font-family: 'Fira Code', 'Consolas', monospace;
   background-color: rgba(0, 0, 0, 0.05);

@@ -1,0 +1,3 @@
+.vscode
+/certbot/conf/*
+/certbot/www/*

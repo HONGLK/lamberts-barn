@@ -16,39 +16,39 @@
 </template>
   
 <script setup>
-  import { ref } from 'vue'
-  
-  const timelineEvents = ref([
-    {
-      year: '2020',
-      title: '全端工程師',
-      description: '加入某科技公司，負責開發和維護企業級應用。'
-    },
-    {
-      year: '2018',
-      title: 'IoT 專案負責人',
-      description: '領導一個創新的物聯網項目，整合 AI 技術。'
-    },
-    {
-      year: '2016',
-      title: '軟體工程師',
-      description: '開始專業軟體開發生涯，主要專注於後端開發。'
-    },
-    {
-      year: '2014',
-      title: '大學畢業',
-      description: '獲得資訊工程學士學位，開始了解 AI 和 IoT 技術。'
-    }
-  ])
+import { ref } from 'vue';
 
-  const props = defineProps({
-    isLastSection: {
-      type: Boolean,
-      default: false
-    }
-  })
+const timelineEvents = ref([
+  {
+    year: '2020',
+    title: '全端工程師',
+    description: '加入某科技公司，負責開發和維護企業級應用。'
+  },
+  {
+    year: '2018',
+    title: 'IoT 專案負責人',
+    description: '領導一個創新的物聯網項目，整合 AI 技術。'
+  },
+  {
+    year: '2016',
+    title: '軟體工程師',
+    description: '開始專業軟體開發生涯，主要專注於後端開發。'
+  },
+  {
+    year: '2014',
+    title: '大學畢業',
+    description: '獲得資訊工程學士學位，開始了解 AI 和 IoT 技術。'
+  }
+]);
+
+const props = defineProps({
+  isLastSection: {
+    type: Boolean,
+    default: false
+  }
+});
 </script>
-  
+
 <style scoped>
 .timeline {
   height: 100%;
