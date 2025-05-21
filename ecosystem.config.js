@@ -8,7 +8,7 @@ module.exports = {
         env: {
           PORT: 3000,
           NODE_ENV: 'production',
-          NUXT_PUBLIC_STRAPI_URL: 'http://api.localhost'
+          NUXT_PUBLIC_STRAPI_URL: 'https://api.lambert76.com'
         },
         instances: 1,
         autorestart: true,
@@ -28,7 +28,8 @@ module.exports = {
           DATABASE_PORT: 5432,
           DATABASE_NAME: 'strapi',
           DATABASE_USERNAME: 'strapi',
-          DATABASE_PASSWORD: 'strapi'
+          DATABASE_PASSWORD: 'strapi',
+          URL: 'https://api.lambert76.com'
         },
         instances: 1,
         autorestart: true,
