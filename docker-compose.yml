@@ -11,46 +11,7 @@ services:
       - ./nginx/sites:/etc/nginx/conf.d
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    depends_on:
-      - frontend
-      - strapi
     restart: unless-stopped
-    networks:
-      - barn-network
-
-  frontend:
-    build:
-      context: ./website
-      dockerfile: Dockerfile
-    expose:
-      - "3000"
-    depends_on:
-      - strapi
-    restart: unless-stopped
-    environment:
-      - NUXT_PUBLIC_STRAPI_URL=http://api.localhost
-    networks:
-      - barn-network
-
-  strapi:
-    build:
-      context: ./strapi-backend
-      dockerfile: Dockerfile
-    expose:
-      - "1337"
-    depends_on:
-      - postgres
-    restart: unless-stopped
-    environment:
-      - DATABASE_CLIENT=postgres
-      - DATABASE_HOST=postgres
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=strapi
-      - DATABASE_USERNAME=strapi
-      - DATABASE_PASSWORD=strapi
-      - NODE_ENV=production
-    volumes:
-      - ./strapi-backend/public/uploads:/opt/app/public/uploads
     networks:
       - barn-network
 
@@ -77,6 +38,7 @@ services:
       - nginx
     command: renew
     entrypoint: /bin/sh -c "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;"
+
 networks:
   barn-network:
     driver: bridge
