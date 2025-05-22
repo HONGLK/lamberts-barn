@@ -9,7 +9,7 @@ export const zhProjects = [
     technologies: ["Lambert", "Bun", "Nuxt", "Docker"]
   },
   {
-    title: "高階地震預警系統 - 客戶端",
+    title: "高階地震預警系統",
     year: "2021",
     description: "針對台灣半導體大廠\n\n安全、快速、準確的地震預警系統",
     fullDescription: "",
@@ -70,7 +70,7 @@ export const enProjects = [
     technologies: ["Lambert", "Bun", "Nuxt", "Docker"]
   },
   {
-    title: "Advanced Earthquake Warning System - Client",
+    title: "Advanced Earthquake Warning System",
     year: "2021",
     description: "For Taiwan's semiconductor factories\n\nSafe, fast, and accurate earthquake warning system",
     fullDescription: "",

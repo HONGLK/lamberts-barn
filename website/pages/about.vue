@@ -74,6 +74,10 @@ import { zhAbout, enAbout } from '~/data/about';
 import { zhTechnologies, enTechnologies } from '~/data/technologies';
 import { Icon } from '@iconify/vue';
   
+useHead({
+  title: 'About'
+});
+
 const { locale } = useI18n();
   
 // 根據當前語系選擇對應的文本

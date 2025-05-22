@@ -3,6 +3,16 @@
     <div class="content">
       <h1 class="page-title">{{ $t('projects') }}</h1>
       <div v-if="isSmallScreen" class="projects-carousel">
+        <div class="carousel-container" ref="carouselContainer">
+          <ProjectCard 
+            v-for="(project, index) in projects"
+            :key="`carousel-${project.title}`"
+            :project="project"
+            :class="['project-card', { active: currentCardIndex === index }]"
+            @mouseenter="pauseCarousel"
+            @mouseleave="resumeCarousel"
+          />
+        </div>
         <div class="carousel-navigation">
           <button class="nav-button prev" @click="prevCard" aria-label="上一個專案">
             &lt;
@@ -18,16 +28,6 @@
           <button class="nav-button next" @click="nextCard" aria-label="下一個專案">
             &gt;
           </button>
-        </div>
-        <div class="carousel-container" ref="carouselContainer">
-          <ProjectCard 
-            v-for="(project, index) in projects"
-            :key="`carousel-${project.title}`"
-            :project="project"
-            :class="['project-card', { active: currentCardIndex === index }]"
-            @mouseenter="pauseCarousel"
-            @mouseleave="resumeCarousel"
-          />
         </div>
       </div>
       
@@ -397,6 +397,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: space-between;
   max-width: 1200px;
+  height: inherit
 }
 
 /* 大螢幕無縫捲動 */
@@ -431,12 +432,13 @@ onBeforeUnmount(() => {
 
 /* 小螢幕輪播 */
 .projects-carousel {
-  width: 95%;
+  width: 80vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 }
 
 .carousel-container {
@@ -497,7 +499,7 @@ onBeforeUnmount(() => {
 /* 輪播卡片 */
 .projects-carousel .project-card {
   position: absolute;
-  width: 90%;
+  width: 85%;
   max-width: 300px;
   opacity: 0;
   visibility: hidden;
@@ -511,9 +513,27 @@ onBeforeUnmount(() => {
   transform: scale(1) translateX(0);
 }
 
-@media (min-width: 768px) {
-  .project-card {
-    margin-right: 0;
+/* @media (max-width: 768px) {
+  .projects-carousel .project-card {
+    width: 90%;
+    max-width: 350px;
+  }
+} */
+
+@media (max-width: 480px) {
+  .projects-carousel {
+    padding: 0 0.5rem;
+  }
+  
+  .projects-carousel .project-card {
+    width: 100%;
+    max-width: none;
   }
 }
+
+/* @media (max-width: 320px) {
+  .projects-carousel .project-card {
+    width: 98%;
+  }
+} */
 </style>

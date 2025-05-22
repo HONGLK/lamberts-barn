@@ -147,8 +147,10 @@ const handleKeyDown = (e) => {
 }
 
 .sections-wrapper {
-  height: 100%;
+  height: 200vh;
   transition: transform 0.6s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .section-indicator {

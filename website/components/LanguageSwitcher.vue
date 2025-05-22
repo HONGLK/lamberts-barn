@@ -41,6 +41,7 @@ const switchLanguage = (localeCode) => {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .lang-btn:hover {

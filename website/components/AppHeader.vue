@@ -127,7 +127,7 @@ const localePath = useLocalePath();
 
 @media (max-width: 768px) {
   .nav {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 1rem;
   }
   
@@ -138,7 +138,7 @@ const localePath = useLocalePath();
   
   .menu-list {
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
   
   .nav-list {
