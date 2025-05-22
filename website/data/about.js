@@ -48,7 +48,7 @@ export const enAbout = {
   tagline: "Full Stack Engineer | IoT Specialist | Tech Enthusiast",
   description: "I'm a passionate full-stack engineer specialized in IoT and structural monitoring systems development.\n\nWith over 5 years of software development experience, cooperated with people from different countries. I excel at transforming complex technical problems into user-friendly solutions. My expertise includes IoT systems, cloud architecture design, and full-stack development.\n\nIn my free time, I enjoy exploring new technologies, expanding my knowledge, and traveling with my family. I believe technology should serve to improve lives and make the world a better place.",
   skills: {
-    title: "Areas of proficiency",
+    title: "Areas of Expertise",
     items: [
       {
         icon: "code",
@@ -78,7 +78,7 @@ export const enAbout = {
     ]
   },
   technologies: {
-    title: "Proficient Skills",
+    title: "Professional Skills",
   },
   contact: {
     title: "Contact Me"
