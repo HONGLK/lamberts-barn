@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     }
   },
   strapi: {
-    url: process.env.STRAPI_URL || 'http://api.localhost',
+    url: process.env.STRAPI_URL || 'https://api.lambert76.com',
     prefix: '/api',
     version: 'v4',
     cookie: {},
