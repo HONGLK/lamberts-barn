@@ -1,60 +1,63 @@
 <template>
-  <div class="fullpage-section projects-section">
-    <h1 class="page-title">{{ $t('projects') }}</h1>
-    <div v-if="isSmallScreen" class="projects-carousel">
-      <div class="carousel-navigation">
-        <button class="nav-button prev" @click="prevCard" aria-label="上一個專案">
-          &lt;
-        </button>
-        <div class="carousel-indicators">
-          <span 
-            v-for="(_, index) in projects" 
-            :key="index" 
-            :class="['dot', { active: currentCardIndex === index }]"
-            @click="goToCard(index)"
-          ></span>
+  <section class="fullpage-section projects-section">
+    <div class="content">
+      <h1 class="page-title">{{ $t('projects') }}</h1>
+      <div v-if="isSmallScreen" class="projects-carousel">
+        <div class="carousel-navigation">
+          <button class="nav-button prev" @click="prevCard" aria-label="上一個專案">
+            &lt;
+          </button>
+          <div class="carousel-indicators">
+            <span 
+              v-for="(_, index) in projects" 
+              :key="index" 
+              :class="['dot', { active: currentCardIndex === index }]"
+              @click="goToCard(index)"
+            ></span>
+          </div>
+          <button class="nav-button next" @click="nextCard" aria-label="下一個專案">
+            &gt;
+          </button>
         </div>
-        <button class="nav-button next" @click="nextCard" aria-label="下一個專案">
-          &gt;
-        </button>
+        <div class="carousel-container" ref="carouselContainer">
+          <ProjectCard 
+            v-for="(project, index) in projects"
+            :key="`carousel-${project.title}`"
+            :project="project"
+            :class="['project-card', { active: currentCardIndex === index }]"
+            @mouseenter="pauseCarousel"
+            @mouseleave="resumeCarousel"
+          />
+        </div>
       </div>
-      <div class="carousel-container" ref="carouselContainer">
-        <ProjectCard 
-          v-for="(project, index) in projects"
-          :key="`carousel-${project.title}`"
-          :project="project"
-          :class="['project-card', { active: currentCardIndex === index }]"
-          @mouseenter="pauseCarousel"
-          @mouseleave="resumeCarousel"
-        />
-      </div>
-    </div>
-    
-    <!-- 大螢幕無縫捲動模式 -->
-    <div 
-      v-else
-      ref="projectsContainer" 
-      class="projects"
-      @mousedown="startDrag"
-      @mousemove="onDrag"
-      @mouseup="stopDrag"
-      @mouseleave="stopDrag"
-      @touchstart="startDragTouch"
-      @touchmove="onDragTouch"
-      @touchend="stopDragTouch"
-    >
-      <div class="projects-wrapper" ref="projectsWrapper">
-        <ProjectCard 
-          v-for="project in projects"
-          :key="`original-${project.title}`" 
-          :project="project"
-          class="project-card"
-          @mouseenter="pauseScroll"
-          @mouseleave="resumeScroll"
-        />
+      
+      <!-- 大螢幕無縫捲動模式 -->
+      <div 
+        v-else
+        ref="projectsContainer" 
+        class="projects"
+        @mousedown="startDrag"
+        @mousemove="onDrag"
+        @mouseup="stopDrag"
+        @mouseleave="stopDrag"
+        @touchstart="startDragTouch"
+        @touchmove="onDragTouch"
+        @touchend="stopDragTouch"
+      >
+        <div class="projects-wrapper" ref="projectsWrapper">
+          <ProjectCard 
+            v-for="project in projects"
+            :key="`original-${project.title}`" 
+            :project="project"
+            class="project-card"
+            @mouseenter="pauseScroll"
+            @mouseleave="resumeScroll"
+          />
+        </div>
       </div>
     </div>
-  </div>
+
+  </section>
 </template>
 
 <script setup>
@@ -385,11 +388,19 @@ onBeforeUnmount(() => {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1200px;
 }
 
 /* 大螢幕無縫捲動 */
 .projects {
-  width: 95%;
   height: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
