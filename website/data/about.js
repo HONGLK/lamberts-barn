@@ -1,8 +1,8 @@
 export const zhAbout = {
   tagline: "軟體工程師 | IoT 技術 | 技術愛好者",
-  description: "台北人 | 生於 1996 年\n\n我是一名熱愛技術、善於溝通的工程師，專注於前後端系統設計、地震預警及結構監測系統的開發。\n\n有著超過 5 年的軟體開發經驗，我擅長將複雜的技術問題轉化為簡單易用的解決方案。我的專業領域包括IoT即時系統、雲端架構設計和前後端開發。\n\n熱愛研究新技術、學習新知識，以及與家人一起旅行探索世界。\n\n如有任何資訊服務相關的需求，請發送電子郵件到我的信箱。",
+  description: "台北人 | 生於 1996 年\n\n我是一名熱愛技術、善於溝通的工程師，專注於前後端系統設計、地震預警及結構監測系統的開發。\n\n有著超過 5 年的軟體開發經驗，並與不同國籍背景的人協同開發，我擅長將複雜的技術問題轉化為簡單易用的解決方案。我的專業領域包括IoT即時系統、雲端架構設計和前後端開發。\n\n熱愛研究新技術、學習新知識，以及與家人一起旅行探索世界。\n\n如有任何資訊服務相關的需求，請發送電子郵件到我的信箱。",
   skills: {
-    title: "專長技能",
+    title: "擅長領域",
     items: [
       {
         icon: "code",
@@ -36,6 +36,9 @@ export const zhAbout = {
       }
     ]
   },
+  technologies: {
+    title: "熟悉技能",
+  },
   contact: {
     title: "聯絡我"
   }
@@ -43,9 +46,9 @@ export const zhAbout = {
 
 export const enAbout = {
   tagline: "Full Stack Engineer | IoT Specialist | Tech Enthusiast",
-  description: "I'm a passionate full-stack engineer specialized in IoT and structural monitoring systems development.\n\nWith over 10 years of software development experience, I excel at transforming complex technical problems into user-friendly solutions. My expertise includes IoT systems, cloud architecture design, and full-stack development.\n\nIn my free time, I enjoy exploring new technologies, expanding my knowledge, and traveling with my family. I believe technology should serve to improve lives and make the world a better place.",
+  description: "I'm a passionate full-stack engineer specialized in IoT and structural monitoring systems development.\n\nWith over 5 years of software development experience, cooperated with people from different countries. I excel at transforming complex technical problems into user-friendly solutions. My expertise includes IoT systems, cloud architecture design, and full-stack development.\n\nIn my free time, I enjoy exploring new technologies, expanding my knowledge, and traveling with my family. I believe technology should serve to improve lives and make the world a better place.",
   skills: {
-    title: "Skills",
+    title: "Areas of proficiency",
     items: [
       {
         icon: "code",
@@ -73,6 +76,9 @@ export const enAbout = {
         description: "Familiar with containerization, CI/CD pipelines, and automated deployment strategies"
       }
     ]
+  },
+  technologies: {
+    title: "Proficient Skills",
   },
   contact: {
     title: "Contact Me"
