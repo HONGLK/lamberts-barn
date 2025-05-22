@@ -23,5 +23,6 @@
     "contact": "聯絡我",
     "copyright": "版權所有",
     "404text": "抱歉，您要找的頁面不存在於 Lambert's Barn 中。\n可能是網址輸入錯誤，或是該資源已被移除。",
-    "404link": "回到 Lambert's Barn"
+    "404link": "回到 Lambert's Barn",
+    "errortext": "伺服器發生錯誤，請稍後再試"
   }
