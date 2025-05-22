@@ -21,5 +21,7 @@
     "aboutLink": "Links",
     "aboutTitle": "About me",
     "contact": "Contact",
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "404text": "Sorry, the page you're looking for doesn't exist in Lambert's Barn.\nYou may have mistyped the URL, or the resource may have been removed.",
+    "404link": "Back to Lambert's Barn"
   }
