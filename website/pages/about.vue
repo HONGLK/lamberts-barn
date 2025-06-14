@@ -219,7 +219,7 @@ const getTechIcon = (tech) => {
   height: 125px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid var(--primary-color);
+  /* border: 2px solid var(--primary-color); */
   position: relative;
 }
 
